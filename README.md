@@ -66,11 +66,10 @@ Unlike traditional delivery apps, GIKGo is built specifically for campus environ
 
 ## Tech Stack
 
-- **Frontend:** React Native / Flutter  
+- **Frontend:** React 
 - **Backend:** Node.js, Express.js  
-- **Database:** Firebase / PostgreSQL  
-- **Authentication:** JWT / Firebase Auth  
-- **Realtime:** Firebase / WebSockets  
+- **Database:** PostgreSQL  
+- **Authentication:** JWT 
 - **Maps:** Google Maps API  
 
 ---
