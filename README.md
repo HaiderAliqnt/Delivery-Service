@@ -75,9 +75,3 @@ Unlike traditional delivery apps, GIKGo is built specifically for campus environ
 
 ---
 
-## Getting Started
-
-### Clone the repository
-```bash
-git clone https://github.com/yourusername/gikgo.git
-cd gikgo
