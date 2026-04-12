@@ -19,7 +19,7 @@ GIKGo addresses these challenges by enabling fast, affordable, and community-dri
 
 ---
 
-## 🎯 Objectives
+## Objectives
 
 - Minimize delivery time within campus
 - Optimize deliverer assignment using proximity and availability
