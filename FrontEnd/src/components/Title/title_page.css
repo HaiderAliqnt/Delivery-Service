@@ -1,0 +1,49 @@
+body{
+    background-color:#741B1B ;
+}
+
+#title-page-container{
+    height:98vh;
+    width:98vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#title-page{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+#title-section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10%;
+}
+h1{
+    font-family: "Jersey 25";
+    font-size: 190px;
+    color:white;
+}
+#avatar-section{
+    height: 90%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#avatar-container{
+    height: 100%;
+    width: 50%;
+    background-color: #151515;
+    display: flex;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+}
+#avatar{
+
+}
