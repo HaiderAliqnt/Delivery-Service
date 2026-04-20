@@ -1,0 +1,22 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend for GIKGO",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HaiderAliqnt/Delivery-Service.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HaiderAliqnt/Delivery-Service/issues"
+  },
+  "homepage": "https://github.com/HaiderAliqnt/Delivery-Service#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
