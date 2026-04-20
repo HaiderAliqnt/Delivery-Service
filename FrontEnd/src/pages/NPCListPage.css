@@ -1,0 +1,17 @@
+.page-content {
+  padding: 24px;
+}
+
+.npc-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.muted-text {
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 32px;
+  font-size: 1.5rem;
+}

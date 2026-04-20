@@ -1,0 +1,9 @@
+.error-panel {
+  background-color: var(--accent-danger);
+  color: var(--text-primary);
+  padding: 16px;
+  margin: 24px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 1.5rem;
+}

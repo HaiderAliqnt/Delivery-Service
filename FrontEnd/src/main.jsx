@@ -1,60 +1,89 @@
 import { Children, StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, createBrowserRouter ,RouterProvider } from 'react-router-dom'
+import './index.css'
 import Title_page  from './components/Title/title_page.jsx'
 import SignIN_page from './components/Sing_in/Sign_in.jsx'
 import SignUP_page from './components/sign-up/signup.jsx'
 import Layout from './layout.jsx'
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//       {/* <Title_page/> */}
-//       {/* <SignIN_page/> */}
-//       <SignUP_page/>
-//   </StrictMode>,
-// )
-function App() {
-  return (
-    <>
-      <BrowserRouter>
-        <Layout/>
-      </BrowserRouter>
-    </>
-  )
-}
+
+// Import New Pages
+import ProtectedRoute from './components/ProtectedRoute.jsx'
+import HomePage from './pages/HomePage.jsx'
+import DelivererHomePage from './pages/DelivererHomePage.jsx'
+import NPCListPage from './pages/NPCListPage.jsx'
+import NPCDetailPage from './pages/NPCDetailPage.jsx'
+import ShopSelectPage from './pages/ShopSelectPage.jsx'
+import NewOrderPage from './pages/NewOrderPage.jsx'
+import OrderStatusPage from './pages/OrderStatusPage.jsx'
+import DelivererFeedPage from './pages/DelivererFeedPage.jsx'
+import DelivererOrderPage from './pages/DelivererOrderPage.jsx'
+import ProfilePage from './pages/ProfilePage.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout/>,
-    children:
-    [
+    children: [
       {
         index: true,
         element: <Title_page/>
       },
       {
-        path: "/signin",
+        path: "/login",
         element: <SignIN_page/>
       },
       {
         path: "/signup",
         element: <SignUP_page/>
       },
-
+      // Protected Routes
+      {
+        path: "/home",
+        element: <ProtectedRoute><HomePage/></ProtectedRoute>
+      },
+      {
+        path: "/home/deliverer",
+        element: <ProtectedRoute><DelivererHomePage/></ProtectedRoute>
+      },
+      {
+        path: "/browse/npcs",
+        element: <ProtectedRoute><NPCListPage/></ProtectedRoute>
+      },
+      {
+        path: "/browse/npcs/:id",
+        element: <ProtectedRoute><NPCDetailPage/></ProtectedRoute>
+      },
+      {
+        path: "/order/new/shop",
+        element: <ProtectedRoute><ShopSelectPage/></ProtectedRoute>
+      },
+      {
+        path: "/order/new",
+        element: <ProtectedRoute><NewOrderPage/></ProtectedRoute>
+      },
+      {
+        path: "/order/:id",
+        element: <ProtectedRoute><OrderStatusPage/></ProtectedRoute>
+      },
+      {
+        path: "/deliver/feed",
+        element: <ProtectedRoute><DelivererFeedPage/></ProtectedRoute>
+      },
+      {
+        path: "/deliver/:id",
+        element: <ProtectedRoute><DelivererOrderPage/></ProtectedRoute>
+      },
+      {
+        path: "/profile",
+        element: <ProtectedRoute><ProfilePage/></ProtectedRoute>
+      }
     ]
   }
-
-]
-)
+])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
-)
-// createRoot(document.getElementById('root')).render(
-//   <StrictMode>
-//     <App />
-//   </StrictMode>,
-// )
-export default App
+)
