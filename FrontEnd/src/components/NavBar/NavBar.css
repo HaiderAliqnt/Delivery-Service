@@ -1,0 +1,36 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background-color: var(--bg-card);
+  border-bottom: 2px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.nav-back-button {
+  background: transparent;
+  color: var(--text-muted);
+  border: none;
+  font-family: inherit;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.nav-back-button:hover {
+  color: var(--text-primary);
+}
+
+.nav-title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.nav-spacer {
+  width: 60px; /* Balances the layout with the back button */
+}
