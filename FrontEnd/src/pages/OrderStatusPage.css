@@ -1,0 +1,71 @@
+.deliverer-info-container {
+  margin: 32px 0;
+}
+
+.deliverer-mini-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 8px;
+}
+
+.deliverer-avatar-mini {
+  width: 48px;
+  height: 48px;
+  background-color: #151515;
+  border-radius: 4px;
+}
+
+.avatar-placeholder-mini {
+  width: 100%;
+  height: 100%;
+  background-color: #4a2e2e;
+}
+
+.deliverer-name-mini {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.order-actions {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.btn-chat {
+  width: 100%;
+  padding: 16px;
+  background-color: var(--bg-card);
+  color: var(--text-muted);
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.btn-cancel {
+  width: 100%;
+  padding: 16px;
+  background-color: transparent;
+  color: var(--accent-danger);
+  border: 2px solid var(--accent-danger);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.btn-cancel:hover {
+  background-color: var(--accent-danger);
+  color: var(--text-primary);
+}

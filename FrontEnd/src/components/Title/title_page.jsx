@@ -1,4 +1,4 @@
-import { useState,useEffect } from 'react'
+import { useEffect } from 'react'
 import {useNavigate} from 'react-router-dom'
 import './title_page.css'
 import pixelart1 from './pixelart1.png'; 
@@ -9,7 +9,7 @@ function Title_page(){
 
     useEffect(() => {
         const timer = setTimeout(() => {
-          navigate('/signin'); 
+          navigate('/login'); 
         }
         , 3000);
         return () => clearTimeout(timer);

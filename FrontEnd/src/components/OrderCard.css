@@ -1,0 +1,51 @@
+.order-card {
+  background-color: var(--bg-card);
+  border: 2px solid var(--border);
+  padding: 16px;
+  margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-store {
+  color: var(--accent);
+  font-size: 1.5rem;
+}
+
+.order-customer {
+  color: var(--text-muted);
+  font-size: 1.2rem;
+}
+
+.order-body {
+  margin: 8px 0;
+}
+
+.order-preview {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.order-claim-btn {
+  background-color: var(--accent);
+  color: var(--text-primary);
+  border: 2px solid var(--border);
+  padding: 12px;
+  font-family: inherit;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.order-claim-btn:hover {
+  background-color: var(--accent-hover);
+}
