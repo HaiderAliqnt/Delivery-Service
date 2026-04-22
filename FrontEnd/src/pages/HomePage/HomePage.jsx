@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import StoreButton from '../components/StoreButton';
-import NavBar from '../components/NavBar';
+import StoreButton from '../../components/StoreButton/StoreButton';
+import NavBar from '../../components/NavBar/NavBar';
 import './HomePage.css';
 
 const STORES = ['GEN. STORE', 'MAIN GATE', 'CAFE', 'OUTSIDE GIK'];

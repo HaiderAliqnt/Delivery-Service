@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import StoreButton from '../components/StoreButton';
-import NavBar from '../components/NavBar';
-import LoadingPixel from '../components/LoadingPixel';
-import { setAvailability } from '../api/deliverer';
-import './HomePage.css'; // Reuse HomePage CSS since layout is identical
+import StoreButton from '../../components/StoreButton/StoreButton';
+import NavBar from '../../components/NavBar/NavBar';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { setAvailability } from "../../api/deliverer";
+import './DelivererHomePage.css'; // Shares styles with HomePage
 
 const ZONES = ['GEN. STORE', 'MAIN GATE', 'CAFE', 'OUTSIDE GIK'];
 

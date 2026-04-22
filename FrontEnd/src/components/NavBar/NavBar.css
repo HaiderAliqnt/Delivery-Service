@@ -2,9 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px;
-  background-color: var(--bg-card);
-  border-bottom: 2px solid var(--border);
+  padding: 16px 24px;
+  background-color: var(--bg-primary);
   position: sticky;
   top: 0;
   z-index: 10;
@@ -14,10 +13,12 @@
   background: transparent;
   color: var(--text-muted);
   border: none;
-  font-family: inherit;
-  font-size: 1.2rem;
+  font-family: "Jersey 25", monospace;
+  font-size: 2rem;
   cursor: pointer;
-  padding: 8px;
+  padding: 8px 0;
+  text-align: left;
+  transition: color 0.1s;
 }
 
 .nav-back-button:hover {
@@ -27,7 +28,8 @@
 .nav-title {
   margin: 0;
   color: var(--text-primary);
-  font-size: 1.5rem;
+  font-family: "Jersey 25", monospace;
+  font-size: 2.5rem;
   text-transform: uppercase;
 }
 

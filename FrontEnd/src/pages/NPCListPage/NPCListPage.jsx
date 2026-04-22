@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import DelivererCard from '../components/DelivererCard';
-import LoadingPixel from '../components/LoadingPixel';
-import { getAvailable } from '../api/deliverers';
-import './ErrorPanel.css';
+import NavBar from '../../components/NavBar/NavBar';
+import DelivererCard from '../../components/DelivererCard/DelivererCard';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { getAvailable } from "../../api/deliverers";
+import "../ErrorPanel/ErrorPanel.css";
 import './NPCListPage.css';
 
 function NPCListPage() {

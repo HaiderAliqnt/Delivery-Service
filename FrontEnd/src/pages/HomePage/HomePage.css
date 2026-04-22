@@ -1,0 +1,96 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.home-content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  flex: 1;
+}
+
+.home-greeting {
+  font-family: "Jersey 25", monospace;
+  font-size: 3.5rem;
+  margin: 0 0 24px 0;
+  text-align: center;
+  background-color: var(--bg-card);
+  color: white;
+  border-radius: 20px;
+  height: 80px;
+  line-height: 80px;
+  white-space: nowrap;
+  padding: 0 16px;
+  overflow: hidden;
+}
+
+.highlight-order {
+  color: #151515; /* Dark grey for the word 'order' */
+  margin-left: 12px;
+}
+
+.highlight-deliver {
+  color: #151515; /* Dark grey for the word 'deliver' */
+  margin-left: 12px;
+}
+
+.section-label {
+  color: white;
+  font-size: 2.5rem;
+  font-family: "Jersey 25", monospace;
+  margin: 16px 0 24px 0;
+  text-transform: uppercase;
+}
+
+.section-label.align-center {
+  text-align: center;
+}
+
+.store-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.home-divider {
+  display: none; /* No divider in figma */
+}
+
+.mode-toggle-container {
+  margin-top: auto;
+  border: none;
+  background-color: var(--bg-card);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.mode-toggle-title {
+  font-family: "Jersey 25", monospace;
+  font-size: 2.5rem;
+  color: white;
+  margin: 0 0 16px 0;
+}
+
+.mode-toggle-button {
+  background-color: #151515;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 0 32px;
+  height: 60px;
+  font-family: "Jersey 25", monospace;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  text-transform: uppercase;
+}
+
+.mode-toggle-button:hover {
+  opacity: 0.8;
+}

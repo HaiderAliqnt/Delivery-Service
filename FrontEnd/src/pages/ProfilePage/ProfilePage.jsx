@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import LoadingPixel from '../components/LoadingPixel';
-import { getProfile } from '../api/profile';
-import { logout } from '../utils/auth';
+import NavBar from '../../components/NavBar/NavBar';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { getProfile } from "../../api/profile";
+import { logout } from "../../utils/auth";
 import './ProfilePage.css';
-import './ErrorPanel.css';
+import "../ErrorPanel/ErrorPanel.css";
 
 function ProfilePage() {
   const navigate = useNavigate();

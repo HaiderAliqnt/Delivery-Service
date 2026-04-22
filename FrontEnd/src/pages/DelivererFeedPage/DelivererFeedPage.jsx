@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import OrderCard from '../components/OrderCard';
-import LoadingPixel from '../components/LoadingPixel';
-import { getFeed, claimOrder } from '../api/deliverer';
-import './ErrorPanel.css';
+import NavBar from '../../components/NavBar/NavBar';
+import OrderCard from '../../components/OrderCard/OrderCard';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { getFeed, claimOrder } from "../../api/deliverer";
+import "../ErrorPanel/ErrorPanel.css";
 
 function DelivererFeedPage() {
   const navigate = useNavigate();
