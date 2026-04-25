@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import LoadingPixel from '../components/LoadingPixel';
-import { createOrder } from '../api/orders';
-import './ErrorPanel.css';
+import NavBar from '../../components/NavBar/NavBar';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { createOrder } from "../../api/orders";
+import "../ErrorPanel/ErrorPanel.css";
 import './NPCDetailPage.css';
 
 function NPCDetailPage() {

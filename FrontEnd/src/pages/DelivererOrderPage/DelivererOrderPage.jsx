@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import LoadingPixel from '../components/LoadingPixel';
-import { updateOrderStatus } from '../api/deliverer';
-import { getStatus } from '../api/orders';
+import NavBar from '../../components/NavBar/NavBar';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { updateOrderStatus } from "../../api/deliverer";
+import { getStatus } from "../../api/orders";
 import './DelivererOrderPage.css';
-import './ErrorPanel.css';
+import "../ErrorPanel/ErrorPanel.css";
 
 function DelivererOrderPage() {
   const { id } = useParams();

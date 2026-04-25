@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import StatusBar from '../components/StatusBar';
-import LoadingPixel from '../components/LoadingPixel';
-import { getStatus, cancelOrder } from '../api/orders';
+import NavBar from '../../components/NavBar/NavBar';
+import StatusBar from '../../components/StatusBar/StatusBar';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { getStatus, cancelOrder } from "../../api/orders";
 import './OrderStatusPage.css';
 
 function OrderStatusPage() {

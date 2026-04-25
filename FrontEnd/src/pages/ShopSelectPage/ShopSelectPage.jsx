@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import StoreButton from '../components/StoreButton';
+import NavBar from '../../components/NavBar/NavBar';
+import StoreButton from '../../components/StoreButton/StoreButton';
 
 const SHOPS = ['TAHIR KHAN', 'AMIR KHAN', 'BANNU BEEF', 'BIRYANI'];
 

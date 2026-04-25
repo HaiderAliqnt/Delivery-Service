@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import NavBar from '../components/NavBar';
-import LoadingPixel from '../components/LoadingPixel';
-import { submitOrder } from '../api/orders';
+import NavBar from '../../components/NavBar/NavBar';
+import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
+import { submitOrder } from "../../api/orders";
 import './NewOrderPage.css';
 
 function NewOrderPage() {
