@@ -2,9 +2,10 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "backend for GIKGO",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "test": "npm run dev"
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,14 @@
   },
   "homepage": "https://github.com/HaiderAliqnt/Delivery-Service#readme",
   "dependencies": {
-    "express": "^5.2.1"
+    "bcrypt": "^6.0.0",
+    "connect-pg-simple": "^10.0.0",
+    "cors": "^2.8.6",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
