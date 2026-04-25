@@ -2,17 +2,39 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { setAuth } from '../../utils/auth';
 import './sign_in.css'
+import { FETCH_URL } from '../../layout.jsx';
 
 function SignIN_page() {
   const navigate = useNavigate();
   const [phone, setPhone] = useState('');
-  const [otp, setOtp] = useState('');
+  const [password, setPassword] = useState('');
 
-  function SignIN_func() {
-    // Mock successful login
-    setAuth('mock-token-from-signin', 'customer');
-    navigate('/home');
-  }
+  const SignIN_func = async(e)=>{
+        // Mock successful login
+        // setAuth('mock-token-from-signin', 'customer');
+        // navigate('/home');
+        e.preventDefault();
+        try{
+            const response = await fetch(`${FETCH_URL}/admin/login` ,{
+                method: "POST",
+                headers: {"Content-Type" : "application/json"},
+                body: JSON.stringify({phone,password})
+            })
+
+            const data = await response.json();
+
+            if(data.success){
+                localStorage.setItem("token" , data.token);
+                navigate('/home')
+            }
+            else{
+                alert(data.message || "Invalid credentials")
+            }
+        }catch(error){
+            console.error("Login Failed" , err);
+            alert("Server Error");
+        }
+    }
 
   return(
     <>
@@ -23,7 +45,7 @@ function SignIN_page() {
             <div id="Signin-box">
                 <div id="text-boxes">
                     <input type="text" value={phone} onChange={e => setPhone(e.target.value)} className='user_details' placeholder='PHONE NUMBER'></input>
-                    <input type="text" value={otp} onChange={e => setOtp(e.target.value)} className='user_details' placeholder='OTP'></input>
+                    <input type="text" value={password} onChange={e => setPassword(e.target.value)} className='user_details' placeholder='PASSWORD'></input>
                 </div>
                 <div id="signin-enter-button-section">
                     <button id="signin-enter-button" onClick={SignIN_func}>ENTER</button>

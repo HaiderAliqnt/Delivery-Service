@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import './signup.css'
+import { FETCH_URL } from '../../layout.jsx';
 
 function SignUP_page() {
   const navigate = useNavigate();
@@ -10,7 +11,32 @@ function SignUP_page() {
 
   const handleSignUp = () => {
     // Navigate back to login since signup is simulated
-    navigate('/login');
+
+    e.preventDefault();
+
+    // try{
+    //     const response = await fetch(`${FETCH_URL}/admin/signup` ,{
+    //         method:"POST",
+    //         headers: {"Content-Type" : "application/json"},
+    //         body: JSON.stringify({username,phone,OTP})
+    //     })
+    //     const data = await response.json();
+    //     if(data.success){
+    //         localStorage.setItem("token" , data.token);
+    //         navigate("/login")
+    //     }
+    //     else{
+    //         alert(data.message || "Sign Up Error")
+    //     }
+    // }catch(err){
+    //     console.error("Signup Failed" , err);
+    //     alert("Server Error");
+    // }
+
+
+
+
+
   };
 
   return (
