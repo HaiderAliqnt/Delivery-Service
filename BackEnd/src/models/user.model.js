@@ -104,7 +104,7 @@ export const updateUserRole = async(new_role , phone_number) => {
     
 } 
 
-
+//FUNCTION TO DISPLAY AVAILABLE USERS
 
 
 
