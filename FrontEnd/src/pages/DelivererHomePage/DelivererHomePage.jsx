@@ -5,6 +5,8 @@ import NavBar from '../../components/NavBar/NavBar';
 import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
 import { setAvailability } from "../../api/deliverer";
 import './DelivererHomePage.css'; // Shares styles with HomePage
+import { setRole } from '../../utils/auth.js';
+
 
 const ZONES = ['GEN. STORE', 'MAIN GATE', 'CAFE', 'OUTSIDE GIK'];
 
@@ -12,6 +14,8 @@ function DelivererHomePage() {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
+  setRole("deliverer"); 
 
   const handleZoneClick = async (zone) => {
     setLoading(true);

@@ -24,7 +24,7 @@ export const signupService = async ({name,password,phone_number}) =>{
         name,
         hashedpassword,
         phone_number,
-        'deliverer'
+        'customer'
     );
     return user;
 };
@@ -45,3 +45,4 @@ export const loginService = async({phone_number,password}) =>{
 
     return user;
 }
+

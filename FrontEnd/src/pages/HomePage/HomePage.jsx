@@ -3,11 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import StoreButton from '../../components/StoreButton/StoreButton';
 import NavBar from '../../components/NavBar/NavBar';
 import './HomePage.css';
+import { useState } from 'react';
+import { getRole, setRole } from '../../utils/auth.js';
 
 const STORES = ['GEN. STORE', 'MAIN GATE', 'CAFE', 'OUTSIDE GIK'];
 
 function HomePage() {
   const navigate = useNavigate();
+  
+  setRole('customer');
 
   const handleStoreClick = (store) => {
     navigate(`/browse/npcs?store=${encodeURIComponent(store)}`);
@@ -41,7 +45,8 @@ function HomePage() {
           <p className="mode-toggle-title">I WANT TO</p>
           <button
             className="mode-toggle-button"
-            onClick={() => navigate('/home/deliverer')}
+            onClick={() => 
+              navigate('/home/deliverer')}
           >
             DELIVER
           </button>

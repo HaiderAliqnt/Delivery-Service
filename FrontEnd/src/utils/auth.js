@@ -6,6 +6,10 @@ export function getRole() {
   return localStorage.getItem('gikigo_role');
 }
 
+export function setRole(new_role){
+  localStorage.setItem('gikigo_role' , new_role)
+}
+
 export function setAuth(token, role) {
   localStorage.setItem('gikigo_token', token);
   localStorage.setItem('gikigo_role', role);

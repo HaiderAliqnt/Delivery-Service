@@ -70,7 +70,7 @@ export const findUserByPhoneNum = async(phone_number) => {
 }
 
 //FUNTION TO FIND USER BY ROLE
-export const findUserByRole = async(role) => {
+export const findUsersByRole = async(role) => {
    
     const result = await pool.query(`
         SELECT * FROM users 
@@ -80,18 +80,37 @@ export const findUserByRole = async(role) => {
     return result.rows;
 }
 
+//FUNCTION TO FIND USER BY RATING
+export const findUsersByRating = async(rating) => {
+   
+    const result = await pool.query(`
+        SELECT * FROM users 
+        WHERE role = $1 
+        `,[rating]
+    );
+    return result.rows;
+}
+
 //FUNCTION TO UPDATE USER ROLE BY USER ID
-export const updateUserRole = async(new_role , user_id) => {
+export const updateUserRole = async(new_role , phone_number) => {
     
     const result  = await pool.query(`
         UPDATE users 
         SET role = $1
-        WHERE user_id = $2
-        `,[new_role,user_id]
+        WHERE phone_number = $2
+        `,[new_role,phone_number]
     );
     return result.rows[0];
     
-}
+} 
+
+
+
+
+
+
+
+
 
 
 
