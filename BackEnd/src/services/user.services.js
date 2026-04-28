@@ -1,7 +1,9 @@
 import bcrypt from "bcrypt";
 import { createUser,findUserByPhoneNum } from "../models/user.model.js";
-
+import { generateToken } from "../utils/token.js";
 export const signupService = async ({name,password,phone_number}) =>{
+
+    console.log("Signup service received:", { name, password, phone_number });
 
     //validate input
     if(!name || !password || !phone_number){
@@ -19,12 +21,10 @@ export const signupService = async ({name,password,phone_number}) =>{
 
     //create the user by calling the create user function from model
     const user = await createUser(
-        {   
-            name,
-            password:hashedpassword,
-            phone_number,
-            role:'Basic Deliverer', //assigns the most basic level
-        }
+        name,
+        hashedpassword,
+        phone_number,
+        'deliverer'
     );
     return user;
 };

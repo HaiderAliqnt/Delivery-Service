@@ -9,32 +9,39 @@ function SignIN_page() {
   const [phone, setPhone] = useState('');
   const [password, setPassword] = useState('');
 
-  const SignIN_func = async(e)=>{
-        // Mock successful login
-        // setAuth('mock-token-from-signin', 'customer');
-        // navigate('/home');
+    const SignIN_func = async (e) => {
         e.preventDefault();
-        try{
-            const response = await fetch(`${FETCH_URL}/admin/login` ,{
+
+        try {
+            const response = await fetch(`${FETCH_URL}/user/login`, {
                 method: "POST",
-                headers: {"Content-Type" : "application/json"},
-                body: JSON.stringify({phone,password})
-            })
+                headers: { 
+                    "Content-Type": "application/json" 
+                },
+                body: JSON.stringify({
+                    phone_number: phone,
+                    password
+                })
+            });
 
             const data = await response.json();
 
-            if(data.success){
-                localStorage.setItem("token" , data.token);
-                navigate('/home')
+            if (!response.ok) {
+                throw new Error(data.message || "Request failed");
             }
-            else{
-                alert(data.message || "Invalid credentials")
+
+            if (data.success) {
+                setAuth(data.token, data.role);
+                navigate('/home');
+            } else {
+                alert(data.message || "Invalid credentials");
             }
-        }catch(error){
-            console.error("Login Failed" , err);
-            alert("Server Error");
+
+        } catch (error) {
+            console.error("Login Failed", error);
+            alert(error.message || "Server Error");
         }
-    }
+    };
 
   return(
     <>
@@ -45,7 +52,7 @@ function SignIN_page() {
             <div id="Signin-box">
                 <div id="text-boxes">
                     <input type="text" value={phone} onChange={e => setPhone(e.target.value)} className='user_details' placeholder='PHONE NUMBER'></input>
-                    <input type="text" value={password} onChange={e => setPassword(e.target.value)} className='user_details' placeholder='PASSWORD'></input>
+                    <input type="password" value={password} onChange={e => setPassword(e.target.value)} className='user_details' placeholder='PASSWORD'></input>
                 </div>
                 <div id="signin-enter-button-section">
                     <button id="signin-enter-button" onClick={SignIN_func}>ENTER</button>

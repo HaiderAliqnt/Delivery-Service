@@ -33,14 +33,17 @@ export const createUserTable = async () => {
 }
 
 //FUNCTION FOR CREATING A NEW USER
-export const createUser = async (name,password,phone_number,role) => {
+export const createUser = async (name, password, phone_number, role, rating = 'Basic Deliverer') => {
     
-    await pool.query(`
+    console.log("Model createUser received:", { name, password, phone_number, role, rating });
+    
+    const result = await pool.query(`
         INSERT INTO users (name, password, phone_number, role, rating)
-        VALUES ($1, $2, $3, $4, 'Basic Delieverer')
-    )`, [name, bycrypt.hashSync(password, 10), phone_number, role])
-    .then(console.log("User created successfully"))  
-    
+        VALUES ($1, $2, $3, $4, $5)
+        RETURNING *
+    `, [name, password, phone_number, role, rating]);
+    console.log("User created successfully");  
+    return result.rows[0];
 };
 
 //FUNCTION TO FIND USER BY ID
@@ -51,7 +54,7 @@ export const findUserByUserId= async(user_id) => {
         WHERE user_id = $1 
         `,[user_id]
     );
-    return result[0];
+    return result.rows[0];
     
 }
 
@@ -63,7 +66,7 @@ export const findUserByPhoneNum = async(phone_number) => {
         WHERE phone_number = $1 
         `,[phone_number]
     );
-    return result[0];
+    return result.rows[0];
 }
 
 //FUNTION TO FIND USER BY ROLE
@@ -74,7 +77,7 @@ export const findUserByRole = async(role) => {
         WHERE role = $1 
         `,[role]
     );
-    return result;
+    return result.rows;
 }
 
 //FUNCTION TO UPDATE USER ROLE BY USER ID

@@ -1,25 +1,42 @@
 import { signupService , loginService } from "../services/user.services.js";
-
-export const signupController = async(req , res) => {
-    try{
+import { generateToken } from "../utils/token.js";
+export const signupController = async (req, res) => {
+    try {
+        console.log("Controller received req.body:", req.body);
         const user = await signupService(req.body);
-        res.status(201).json(user);
-    } catch (err){
-        res.status(400).json({error:err.message});
+
+        const token = generateToken(user);
+
+        res.status(201).json({
+            success: true,
+            token,
+            role: user.role
+        });
+
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            message: err.message
+        });
     }
 };
-
-export const loginController = async(req,res) => {
-    
-    try{
+export const loginController = async (req, res) => {
+    try {
         const user = await loginService(req.body);
-        
-        req.session.user_ID = user.user_ID;
-        res.json({message : "Logged in" , user});
 
-    }catch(err){
-        res.status(401).json({error: err.message})
+        const token = generateToken(user);
+
+        res.json({
+            success: true,
+            token,
+            role: user.role
+        });
+
+    } catch (err) {
+        res.status(401).json({
+            success: false,
+            message: err.message
+        });
     }
 };
-
 
