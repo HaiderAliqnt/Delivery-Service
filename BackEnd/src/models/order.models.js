@@ -1,4 +1,5 @@
 import { pool } from '../DB/index.js'
+import orderRouter from '../routes/orders.routes.js';
 
 
 //FUNCTION TO CREATE ORDERS TABLE
@@ -27,7 +28,7 @@ export const createOrdersTable = async()=>{
 
 //FUNCTION TO CREATE ORDER
 
-export const createOrder = async(customer_id , deliverer_id = 0 , pickup_location ,delivery_hostel,delivery_room ,special_instructions,total_price,status = 'open')=>{
+export const createOrder = async(customer_id , deliverer_id , pickup_location ,delivery_hostel,delivery_room ,special_instructions,total_price,status)=>{
     try{
         
         console.log("Model createOrder recieved:" ,{customer_id , deliverer_id , pickup_location ,delivery_hostel,delivery_room ,special_instructions,total_price,status})
@@ -36,7 +37,7 @@ export const createOrder = async(customer_id , deliverer_id = 0 , pickup_locatio
             INSERT INTO orders(customer_id , deliverer_id , pickup_location ,delivery_hostel,delivery_room ,special_instructions,total_price,status)
             VALUES($1 , $2 , $3 , $4 , $5 ,$6 ,$7, $8)
             RETURNING *
-        `, [customer_id , deliverer_id = 0 , pickup_location , delivery_hostel , delivery_room , special_instructions , total_price , status = 'open']);
+        `, [customer_id , deliverer_id , pickup_location , delivery_hostel , delivery_room , special_instructions , total_price , status]);
         console.log("order created")
         return result.rows[0];
     }catch(err){
@@ -53,14 +54,6 @@ export const displayAllOrders = async () =>{
     return result.rows;
 };
 
-// export const displayLocationSpecificOrders = async (location) =>{
-    
-//     const result = await pool.query(`
-//         SELECT * FROM orders
-//         WHERE pickup_location = $1
-//     ` ,[location]);
-//     return result.rows;
-// };
 
 
 export const getOpenOrders = async(location) => { 
@@ -77,26 +70,57 @@ export const getOpenOrders = async(location) => {
 };
 
 
-export const updateOrderStatus = async(order_id , update)=>{
+export const updateOrderStatus = async(order_id , update)=> {
     const result = await pool.query(`
         UPDATE orders
         SET status = $2
         WHERE order_id = $1
-    `, [order_id , update])
+        RETURNING *
+    `, [order_id , update]);
 
     return result.rows[0];
 }
+
+
+export const getOrderStatus = async(order_id) => {
+    const result = await pool.query(`
+        SELECT o.*, d.name AS deliverer_name
+        FROM orders o
+        LEFT JOIN users d ON o.deliverer_id = d.user_id
+        WHERE o.order_id = $1
+    `,[order_id]);
+
+    return result.rows[0];
+}
+
+
+export const getOrderById = async(order_id) => {
+    const result = await pool.query(`
+        SELECT o.*
+        FROM orders o
+        WHERE o.order_id = $1    
+        
+    `, [order_id])
+
+    return result.rows[0]
+}
+
+
+
+
 
 export const assignDeliverer = async(order_id , deliverer_id) => {
-     
     const result = await pool.query(`
         UPDATE orders
-        SET deliverer_id  = $2
+        SET deliverer_id = $2
         WHERE order_id = $1
-    `, [order_id , deliverer_id])
+        RETURNING *
+    `, [order_id , deliverer_id]);
 
     return result.rows[0];
 }
+
+
 
 
 

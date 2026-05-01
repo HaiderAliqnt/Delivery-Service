@@ -14,7 +14,7 @@ function HomePage() {
   setRole('customer');
 
   const handleStoreClick = (store) => {
-    navigate(`/browse/npcs?store=${encodeURIComponent(store)}`);
+    //when the store is clicked we will redirect user to an interface to record the order and store it 
   };
 
   return (

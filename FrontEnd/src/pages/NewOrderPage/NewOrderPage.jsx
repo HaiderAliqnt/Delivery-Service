@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
-import { submitOrder } from "../../api/orders";
+import { createOrder } from "../../api/orders";
 import './NewOrderPage.css';
 
 function NewOrderPage() {
@@ -16,21 +16,35 @@ function NewOrderPage() {
   const [error, setError] = useState(null);
 
   const handleSubmit = async () => {
-    if (!orderText.trim()) {
-      setError('ORDER CANNOT BE EMPTY.');
-      return;
-    }
+  if (!orderText.trim()) {
+    setError('ORDER CANNOT BE EMPTY.');
+    return;
+  }
 
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await submitOrder({ order_id, items_text: orderText, phone, store, shop });
-      navigate(`/order/${response.order_id}`, { state: { order: response } });
-    } catch {
-      setError('SOMETHING WENT WRONG. TRY AGAIN.');
-      setLoading(false);
-    }
-  };
+  setLoading(true);
+  setError(null);
+  try {
+    // You'll need to get customer_id from auth/session
+    const customer_id = 1; // Replace with actual auth logic
+    
+    const response = await createOrder({
+      customer_id,
+      pickup_location: store, // backend expects 'pickup_location', not 'store'
+      delivery_hostel: 'Main Hostel', // You'll need to collect this from user
+      delivery_room: '101', // You'll need to collect this from user
+      special_instructions: '', // Optional field
+      total_price: 0, // You'll need to calculate this
+      items_text: orderText, // This is correct
+      phone // This is correct
+    });
+    
+    // Backend returns { success: true, order: { order_id, ... } }
+    navigate(`/order/${response.order.order_id}`, { state: { order: response.order } });
+  } catch (err) {
+    setError('SOMETHING WENT WRONG. TRY AGAIN.');
+    setLoading(false);
+  }
+};
 
   if (loading) return <LoadingPixel />;
 
@@ -54,7 +68,7 @@ function NewOrderPage() {
 
         <p className="section-label extra-spacing">FOR EXTRA COMMUNICATION REACH OUT</p>
 
-        <div className="phone-input-container">
+        {/* <div className="phone-input-container">
           <div className="phone-avatar-placeholder"></div>
           <input
             type="text"
@@ -63,7 +77,7 @@ function NewOrderPage() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
           />
-        </div>
+        </div> */}
 
         <button className="submit-order-button" onClick={handleSubmit}>
           {store.toUpperCase()}
