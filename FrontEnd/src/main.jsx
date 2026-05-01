@@ -67,7 +67,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><OrderStatusPage/></ProtectedRoute>
       },
       {
-        path: "/deliver/feed",
+        // path: "/deliver/feed",
+        path:"/browse/orders",
         element: <ProtectedRoute><DelivererFeedPage/></ProtectedRoute>
       },
       {
@@ -86,4 +87,4 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <RouterProvider router={router} />
   </StrictMode>,
-)
+)

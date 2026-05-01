@@ -5,7 +5,7 @@ import NavBar from '../../components/NavBar/NavBar';
 import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
 import { setAvailability } from "../../api/deliverer";
 import './DelivererHomePage.css'; // Shares styles with HomePage
-import { setRole } from '../../utils/auth.js';
+import { getRole, setRole } from '../../utils/auth.js';
 
 
 const ZONES = ['GEN. STORE', 'MAIN GATE', 'CAFE', 'OUTSIDE GIK'];
@@ -17,16 +17,21 @@ function DelivererHomePage() {
 
   setRole("deliverer"); 
 
-  const handleZoneClick = async (zone) => {
-    setLoading(true);
-    setError(null);
-    try {
-      await setAvailability({ status: 'available', current_hostel: zone });
-      navigate('/deliver/feed');
-    } catch {
-      setError('SOMETHING WENT WRONG. TRY AGAIN.');
-    } finally {
-      setLoading(false);
+  const handleZoneClick = async (location) => {
+    // setLoading(true);
+    // setError(null);
+    // try {
+    //   await setAvailability({ status: 'available', current_hostel: zone });
+    //   navigate('/deliver/feed');
+    // } catch {
+    //   setError('SOMETHING WENT WRONG. TRY AGAIN.');
+    // } finally {
+    //   setLoading(false);
+    // }
+
+    const userRole = getRole();
+    if(userRole == "deliverer"){
+      navigate(`/browse/orders?location=${encodeURIComponent(location)}`)
     }
   };
 

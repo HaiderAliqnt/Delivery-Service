@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import OrderCard from '../../components/OrderCard/OrderCard';
 import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
@@ -12,34 +12,42 @@ function DelivererFeedPage() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [searchParams] = useSearchParams();
+  const location = searchParams.get("location")
   useEffect(() => {
-    let mounted = true;
+  if (!location) {
+    setOrders([]);
+    return;
+  }
 
-    const fetchFeed = () => {
-      getFeed()
-        .then((data) => {
-          if (mounted) {
-            setOrders(data);
-            setLoading(false);
-          }
-        })
-        .catch(() => {
-          if (mounted) {
-            setError('FAILED TO LOAD RECENT ORDERS.');
-            setLoading(false);
-          }
-        });
-    };
+  let isActive = true;
 
-    fetchFeed();
-    const interval = setInterval(fetchFeed, 5000);
+  setLoading(true);
+  setError(null);
 
-    return () => {
-      mounted = false;
-      clearInterval(interval);
-    };
-  }, []);
+  const fetchFeed = async () => {
+    try {
+      const data = await getFeed(location);
+      if (isActive) {
+        setOrders(data);
+        setLoading(false);
+      }
+    } catch {
+      if (isActive) {
+        setError("FAILED TO LOAD RECENT ORDERS.");
+        setLoading(false);
+      }
+    }
+  };
+
+  fetchFeed();
+  const interval = setInterval(fetchFeed, 5000);
+
+  return () => {
+    isActive = false;
+    clearInterval(interval);
+  };
+}, [location]);
 
   const handleClaim = async (orderId) => {
     setLoading(true);

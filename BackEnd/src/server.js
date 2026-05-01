@@ -6,6 +6,7 @@ import { pool } from "./DB/index.js"
 import { createUserTable } from "./models/user.model.js";
 import { createOrdersTable } from "./models/order.models.js";
 import userRouter from "./routes/user.routes.js";
+import orderRouter from "./routes/orders.routes.js";
 
 const app = express();
 
@@ -56,3 +57,4 @@ await createOrdersTable()
 
 // ROUTES
 app.use("/user" , userRouter);
+app.use("/order" , orderRouter)

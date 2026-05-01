@@ -53,14 +53,29 @@ export const displayAllOrders = async () =>{
     return result.rows;
 };
 
-export const displayLocationSpecificOrders = async (location) =>{
+// export const displayLocationSpecificOrders = async (location) =>{
     
+//     const result = await pool.query(`
+//         SELECT * FROM orders
+//         WHERE pickup_location = $1
+//     ` ,[location]);
+//     return result.rows;
+// };
+
+
+export const getOpenOrders = async(location) => { 
     const result = await pool.query(`
-        SELECT * FROM orders
-        WHERE pickup_location = $1
-    ` ,[location]);
+        SELECT o.*, u.name as customer_name 
+        FROM orders o
+        LEFT JOIN users u ON o.customer_id = u.user_id
+        WHERE o.status = 'open'
+          AND o.pickup_location ILIKE $1
+        ORDER BY o.created_at DESC
+    `, [`%${location}%`]);
+
     return result.rows;
 };
+
 
 export const updateOrderStatus = async(order_id , update)=>{
     const result = await pool.query(`
