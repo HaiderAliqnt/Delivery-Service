@@ -1,0 +1,80 @@
+.delivered-container {
+    background-color: #0d0d0d;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Store Header */
+.store-name {
+    background-color: #8b1a1a;
+    padding: 20px 40px;
+    border-radius: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Title */
+.delivered-container h2 {
+    margin: 15px 0;
+    letter-spacing: 2px;
+}
+
+/* Card */
+.delivered-card {
+    background-color: #8b1a1a;
+    padding: 20px;
+    border-radius: 20px;
+    width: 260px;
+    text-align: left;
+}
+
+.delivered-card h3 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.delivered-card p {
+    margin: 5px 0;
+}
+
+/* Instructions */
+.instructions {
+    margin-top: 10px;
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Success Icon */
+.success-icon {
+    margin-top: 20px;
+    background-color: #2e7d32;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    font-size: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button */
+.back-btn {
+    margin-top: 20px;
+    background-color: #8b1a1a;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+    transition: 0.2s ease;
+}

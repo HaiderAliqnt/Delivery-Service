@@ -1,0 +1,92 @@
+.order-confirmation-container {
+    background-color: #0d0d0d;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Store Name Header */
+.store-name {
+    background-color: #8b1a1a;
+    padding: 20px 40px;
+    border-radius: 25px;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Section Titles */
+.order-confirmation-container h2 {
+    margin: 20px 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/* Order Card */
+.order-card {
+    background-color: #8b1a1a;
+    padding: 20px;
+    border-radius: 20px;
+    width: 250px;
+    text-align: left;
+}
+
+/* Items List */
+.order-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.order-card li {
+    margin-bottom: 5px;
+    font-size: 16px;
+}
+
+/* Price & Location */
+.order-card p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Action Buttons Container */
+.actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 30px;
+}
+
+/* Buttons Base */
+.actions button {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Accept Button */
+.accept-btn {
+    background-color: black;
+    color: #00ff00;
+}
+
+/* Reject Button */
+.reject-btn {
+    background-color: black;
+    color: red;
+}
+
+/* Hover Effects */
+.actions button:hover {
+    transform: scale(1.1);
+    transition: 0.2s ease;
+}

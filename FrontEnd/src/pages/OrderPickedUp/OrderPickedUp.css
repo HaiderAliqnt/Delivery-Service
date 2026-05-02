@@ -1,0 +1,56 @@
+.picked-container {
+    background-color: #0d0d0d;
+    min-height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Store header */
+.store-name {
+    background-color: #8b1a1a;
+    padding: 20px 40px;
+    border-radius: 25px;
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Title */
+.picked-container h2 {
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+/* Timer Card */
+.timer-card {
+    margin-top: 20px;
+    background-color: #8b1a1a;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    width: 250px;
+}
+
+.timer-card h3 {
+    margin-bottom: 10px;
+}
+
+/* Delivered Button */
+.delivered-btn {
+    margin-top: 20px;
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.delivered-btn:hover {
+    transform: scale(1.05);
+    transition: 0.2s ease;
+}

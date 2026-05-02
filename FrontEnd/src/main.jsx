@@ -19,7 +19,10 @@ import OrderStatusPage from './pages/OrderStatusPage/OrderStatusPage.jsx'
 import DelivererFeedPage from './pages/DelivererFeedPage/DelivererFeedPage.jsx'
 import DelivererOrderPage from './pages/DelivererOrderPage/DelivererOrderPage.jsx'
 import ProfilePage from './pages/ProfilePage/ProfilePage.jsx'
-
+import OrderConfirmationPage from './pages/OrderConfirmation/OrderConfirmation.jsx'
+import OrderConfirmedPage from './pages/OrderConfirmed/OrderConfirmed.jsx'
+import OrderPickedUpPage from './pages/OrderPickedUp/OrderPickedUp.jsx'
+import OrderDeliveredPage from './pages/OrderDelivered/OrderDelivered.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -74,6 +77,22 @@ const router = createBrowserRouter([
       {
         path: "/deliver/:id",
         element: <ProtectedRoute><DelivererOrderPage/></ProtectedRoute>
+      },
+      {
+        path:"/order-confirmation/:id",
+        element:<ProtectedRoute><OrderConfirmationPage/></ProtectedRoute>
+      },
+      {
+        path:"/orderConfirmed",
+        element:<ProtectedRoute><OrderConfirmedPage/></ProtectedRoute>
+      },
+      {
+        path:"/order/picked",
+        element:<ProtectedRoute><OrderPickedUpPage/></ProtectedRoute>
+      },
+      {
+        path:"/order/delivered",
+        element:<ProtectedRoute><OrderDeliveredPage></OrderDeliveredPage></ProtectedRoute>
       },
       {
         path: "/profile",

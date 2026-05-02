@@ -23,7 +23,7 @@ export async function getStatus(orderId) {
   })
 
   const result = await response.json()
-  return result;
+  return result
 }
 
 export async function cancelOrder(orderId) {

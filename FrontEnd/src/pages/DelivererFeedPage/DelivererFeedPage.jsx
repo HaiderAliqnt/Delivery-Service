@@ -5,6 +5,7 @@ import OrderCard from '../../components/OrderCard/OrderCard';
 import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
 import { getFeed, claimOrder } from "../../api/deliverer";
 import "../ErrorPanel/ErrorPanel.css";
+import { storeOrderID } from '../../utils/auth';
 
 function DelivererFeedPage() {
   const navigate = useNavigate();
@@ -49,15 +50,9 @@ function DelivererFeedPage() {
   };
 }, [location]);
 
-  const handleClaim = async (orderId) => {
-    setLoading(true);
-    try {
-      await claimOrder(orderId);
-      navigate(`/deliver/${orderId}`);
-    } catch {
-      setError('FAILED TO CLAIM ORDER.');
-      setLoading(false);
-    }
+  const handleClaim = (orderId) => {
+    storeOrderID(orderId)
+    navigate(`/order-confirmation/${orderId}`);
   };
 
   return (

@@ -14,12 +14,33 @@ export async function getFeed(location) {
   return res.json();
 }
 
-export async function claimOrder(orderId) {
-  await delay();
-  return { success: true, order_id: orderId };
+export async function claimOrder(orderId, deliverer_id) {
+  const res = await fetch(`${FETCH_URL}/order/${orderId}/assign-deliverer`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ deliverer_id })
+  });
+
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || 'Failed to claim order');
+  }
+
+  return data;
 }
 
 export async function updateOrderStatus(orderId, status) {
-  await delay();
-  return { success: true, order_id: orderId, status };
+  
+  const res = await fetch(`${FETCH_URL}/order/${orderId}/status`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ status })
+  });
+
+  const data = await res.json();
+  if (!res.ok) {
+    throw new Error(data.message || 'Failed to claim order');
+  }
+  return data;
 }
+

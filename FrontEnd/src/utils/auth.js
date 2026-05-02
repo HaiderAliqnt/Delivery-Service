@@ -40,7 +40,39 @@ export function getOutsideStore(){
   localStorage.getItem('outStore')
 }
 
+
+export function storeOrderID(orderId){
+  localStorage.setItem('orderId',orderId)
+}
+
+export function getOrderID(){
+  return localStorage.getItem('orderId')
+}
+
 export function getCustomerIdFromToken() {
+  const token = getToken();
+  if (!token) return null;
+
+  const parts = token.split('.');
+  if (parts.length !== 3) return null;
+
+  try {
+    const payloadBase64 = parts[1]
+      .replace(/-/g, '+')
+      .replace(/_/g, '/');
+    const payloadJson = decodeURIComponent(
+      Array.from(atob(payloadBase64), (c) =>
+        '%' + c.charCodeAt(0).toString(16).padStart(2, '0')
+      ).join('')
+    );
+    const payload = JSON.parse(payloadJson);
+    return payload.customer_id || payload.id || payload.sub || null;
+  } catch {
+    return null;
+  }
+}
+
+export function getDelivererIdFromToken() {
   const token = getToken();
   if (!token) return null;
 
