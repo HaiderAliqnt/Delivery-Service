@@ -13,7 +13,7 @@ function OrderStatusPage() {
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  
   useEffect(() => {
     let mounted = true;
     
@@ -21,7 +21,8 @@ function OrderStatusPage() {
       getStatus(id)
         .then((data) => {
           if (mounted) {
-            setOrder(data);
+            const orderData = data?.order_status ?? data;
+            setOrder(orderData);
             setLoading(false);
           }
         })
@@ -85,7 +86,7 @@ function OrderStatusPage() {
         <div className="order-actions">
           <button className="btn-chat" disabled>CHAT (SOON)</button>
           
-          {order?.status === 'OPEN' && (
+          {order?.status === 'open' && (
             <button className="btn-cancel" onClick={handleCancel}>
               CANCEL ORDER
             </button>

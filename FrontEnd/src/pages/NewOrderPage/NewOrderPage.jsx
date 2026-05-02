@@ -4,17 +4,23 @@ import NavBar from '../../components/NavBar/NavBar';
 import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
 import { createOrder } from "../../api/orders";
 import './NewOrderPage.css';
+import { getCustomerIdFromToken, getStore } from '../../utils/auth';
 
 function NewOrderPage() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { store, shop, order_id } = location.state || { store: 'UNKNOWN', order_id: 'mock' };
-
+  // const { store, shop, order_id } = location.state || { store: 'UNKNOWN', order_id: 'mock' };
+  const store = getStore();
   const [orderText, setOrderText] = useState('');
   const [phone, setPhone] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [dropLocation, setDropLocation] = useState('');
+  const [roomNumber, setRoomNumber] = useState('');
 
+  
+
+ 
   const handleSubmit = async () => {
   if (!orderText.trim()) {
     setError('ORDER CANNOT BE EMPTY.');
@@ -24,19 +30,25 @@ function NewOrderPage() {
   setLoading(true);
   setError(null);
   try {
-    // You'll need to get customer_id from auth/session
-    const customer_id = 1; // Replace with actual auth logic
     
-    const response = await createOrder({
+    const customer_id = getCustomerIdFromToken();
+    // console.log(customer_id); for debugging purposes ...works
+    if(!customer_id){
+      setError("Please sign in to place an order. ")
+      setLoading(false)
+      return;
+    }
+    // You'll need to get customer_id from auth/session
+    const payload = {
       customer_id,
-      pickup_location: store, // backend expects 'pickup_location', not 'store'
-      delivery_hostel: 'Main Hostel', // You'll need to collect this from user
-      delivery_room: '101', // You'll need to collect this from user
-      special_instructions: '', // Optional field
-      total_price: 0, // You'll need to calculate this
-      items_text: orderText, // This is correct
-      phone // This is correct
-    });
+      pickup_location: store,
+      delivery_hostel: dropLocation,
+      delivery_room: roomNumber,
+      special_instructions: orderText,
+      total_price: 150,
+    }; 
+
+    const response = await createOrder(payload);
     
     // Backend returns { success: true, order: { order_id, ... } }
     navigate(`/order/${response.order.order_id}`, { state: { order: response.order } });
@@ -57,7 +69,7 @@ function NewOrderPage() {
 
         <p className="section-label">ENTER YOUR ORDER</p>
 
-        {shop && <p className="muted-text" style={{margin: '0 0 16px 0', textAlign: 'left'}}>SELECTED SHOP: {shop}</p>}
+        {store && <p className="muted-text" style={{margin: '0 0 16px 0', textAlign: 'left'}}>SELECTED SHOP: {store}</p>}
 
         <textarea
           className="order-textarea"
@@ -66,22 +78,33 @@ function NewOrderPage() {
           onChange={(e) => setOrderText(e.target.value)}
         />
 
-        <p className="section-label extra-spacing">FOR EXTRA COMMUNICATION REACH OUT</p>
+      <div className="form-field">
+        <label htmlFor="drop-location">DROP LOCATION</label>
+        <input
+          id="drop-location"
+          className="text-input"
+          type="text"
+          placeholder="Hostel / building"
+          value={dropLocation}
+          onChange={(e) => setDropLocation(e.target.value)}
+        />
+      </div>
 
-        {/* <div className="phone-input-container">
-          <div className="phone-avatar-placeholder"></div>
+      <div className="form-field">
+          <label htmlFor="room-number">ROOM NUMBER (OPTIONAL)</label>
           <input
+            id="room-number"
+            className="text-input"
             type="text"
-            className="phone-input"
-            placeholder="Phone num"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            placeholder="Room number"
+            value={roomNumber}
+            onChange={(e) => setRoomNumber(e.target.value)}
           />
-        </div> */}
-
-        <button className="submit-order-button" onClick={handleSubmit}>
-          {store.toUpperCase()}
-        </button>
+      </div>
+        
+      <button className="submit-order-button" onClick={handleSubmit}>
+          SUBMIT
+      </button>
       </div>
     </div>
   );

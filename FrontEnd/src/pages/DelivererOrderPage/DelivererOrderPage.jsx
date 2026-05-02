@@ -47,8 +47,8 @@ function DelivererOrderPage() {
     setActionLoading(true);
     let newStatus = order.status;
     
-    if (order.status === 'CLAIMED') newStatus = 'PICKED UP';
-    else if (order.status === 'PICKED UP') newStatus = 'DELIVERED';
+    if (order.status === 'claimed') newStatus = 'picked_up';
+    else if (order.status === 'picked_up') newStatus = 'delivered';
 
     try {
       await updateOrderStatus(id, newStatus);
@@ -66,9 +66,9 @@ function DelivererOrderPage() {
   };
 
   const getActionText = () => {
-    if (order?.status === 'CLAIMED') return 'MARK AS PICKED UP';
-    if (order?.status === 'PICKED UP') return 'MARK AS DELIVERED';
-    if (order?.status === 'DELIVERED') return 'COMPLETED';
+    if (order?.status === 'claimed') return 'MARK AS PICKED UP';
+    if (order?.status === 'picked_up') return 'MARK AS DELIVERED';
+    if (order?.status === 'delivered') return 'COMPLETED';
     return 'UNKNOWN STATE';
   };
 

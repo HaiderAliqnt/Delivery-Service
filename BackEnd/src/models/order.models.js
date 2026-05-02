@@ -10,7 +10,7 @@ export const createOrdersTable = async()=>{
                 order_id SERIAL PRIMARY KEY,
                 customer_id INT REFERENCES users(user_id) ON DELETE CASCADE,
                 deliverer_id INT REFERENCES users(user_id) ON DELETE SET NULL,
-                pickup_location VARCHAR(255) NOT NULL CHECK(pickup_location IN ('General_Store','Tuc','Main Gate','TKR','KB' ,'AMK' ,'BBF')),
+                pickup_location VARCHAR(255) NOT NULL ,
                 delivery_hostel VARCHAR(255) NOT NULL,
                 delivery_room VARCHAR(255),
                 special_instructions VARCHAR(255),

@@ -4,7 +4,7 @@ import StoreButton from '../../components/StoreButton/StoreButton';
 import NavBar from '../../components/NavBar/NavBar';
 import './HomePage.css';
 import { useState } from 'react';
-import { getRole, setRole } from '../../utils/auth.js';
+import { getRole, setRole, setStore } from '../../utils/auth.js';
 
 const STORES = ['GEN. STORE', 'MAIN GATE', 'CAFE', 'OUTSIDE GIK'];
 
@@ -14,7 +14,10 @@ function HomePage() {
   setRole('customer');
 
   const handleStoreClick = (store) => {
-    //when the store is clicked we will redirect user to an interface to record the order and store it 
+    //when the store is clicked we will save the store and redirect user to an interface to record the order and store it 
+    setStore(store);
+    navigate("/order/new")
+    
   };
 
   return (
