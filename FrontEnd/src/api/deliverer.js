@@ -20,7 +20,6 @@ export async function claimOrder(orderId, deliverer_id) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ deliverer_id })
   });
-
   const data = await res.json();
   if (!res.ok) {
     throw new Error(data.message || 'Failed to claim order');
@@ -44,3 +43,17 @@ export async function updateOrderStatus(orderId, status) {
   return data;
 }
 
+export async function getDelivererInfo(orderId) {
+  const res = await fetch(`${FETCH_URL}/order/${orderId}/deliverer`, {
+    method: "GET",
+    headers: { "Content-Type": "application/json" }
+  });
+
+  const data = await res.json();
+
+  if (!res.ok) {
+    throw new Error(data.message || "Failed to fetch deliverer info");
+  }
+
+  return data;
+}

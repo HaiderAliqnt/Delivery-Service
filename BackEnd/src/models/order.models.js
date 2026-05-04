@@ -106,21 +106,35 @@ export const getOrderById = async(order_id) => {
 }
 
 
-
-
-
 export const assignDeliverer = async(order_id , deliverer_id) => {
     const result = await pool.query(`
         UPDATE orders
-        SET deliverer_id = $2
+        SET deliverer_id = $2,
+            status ='claimed'
         WHERE order_id = $1
+            AND status = 'open'
         RETURNING *
     `, [order_id , deliverer_id]);
 
     return result.rows[0];
 }
 
+export const getDelivererInfo = async (order_id) => {
+    const result = await pool.query(`
+        SELECT 
+            o.order_id,
+            o.status,
+            u.name AS deliverer_name,
+            u.rating AS deliverer_rating,
+            u.phone_number AS deliverer_phone
+        FROM orders o
+        LEFT JOIN users u 
+            ON o.deliverer_id = u.user_id
+        WHERE o.order_id = $1
+    `, [order_id]);
 
+    return result.rows[0];
+};
 
 
 

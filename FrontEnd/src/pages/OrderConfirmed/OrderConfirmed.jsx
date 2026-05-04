@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getStatus } from "../../api/orders";
+import { getStatus, updateOrderStatus } from "../../api/orders";
 import { getOrderID } from "../../utils/auth";
 import NavBar from "../../components/NavBar/NavBar";
 import "./OrderConfirmed.css";
@@ -32,7 +32,8 @@ function OrderConfirmedPage() {
         fetchOrder();
     }, [orderId]);
 
-    const handlePickedUp = () => {
+    const handlePickedUp = async() => {
+        const data = await updateOrderStatus(orderId , 'picked_up')
         navigate("/order/picked");
     };
     const handleCancel = () => {

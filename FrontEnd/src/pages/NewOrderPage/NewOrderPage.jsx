@@ -51,7 +51,8 @@ function NewOrderPage() {
     const response = await createOrder(payload);
     
     // Backend returns { success: true, order: { order_id, ... } }
-    navigate(`/order/${response.order.order_id}`, { state: { order: response.order } });
+    // navigate(`/order/${response.order.order_id}`, { state: { order: response.order } });
+    navigate('/order/searching')
   } catch (err) {
     setError('SOMETHING WENT WRONG. TRY AGAIN.');
     setLoading(false);

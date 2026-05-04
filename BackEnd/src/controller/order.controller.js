@@ -1,4 +1,4 @@
-import { assignDelivererService, cancelOrderService, createOrderService , getOpenOrdersService, getOrderStatusService, updateOrderStatusService } from "../services/orders.services.js";
+import { assignDelivererService, cancelOrderService, createOrderService , getDelivererInfoService, getOpenOrdersService, getOrderStatusService, updateOrderStatusService } from "../services/orders.services.js";
 
 
 export const createOrderController = async (req, res) => {
@@ -94,7 +94,7 @@ export const updateOrderStatusController = async(req,res)=>{
 }
 
 export const assignDelivererController = async(req,res)=>{
-     try{
+    try{
         
         const { orderId } = req.params;
         const { deliverer_id } = req.body;
@@ -119,7 +119,24 @@ export const assignDelivererController = async(req,res)=>{
     }
 }
 
+export const getDelivererInfoController = async (req, res) => {
+    try {
+        const orderId = req.params.orderId;
 
+        const deliverer_info = await getDelivererInfoService(orderId);
+
+        res.status(200).json({
+            success: true,
+            deliverer_info
+        });
+
+    } catch (err) {
+        res.status(400).json({
+            success: false,
+            message: err.message
+        });
+    }
+};
 
 
 

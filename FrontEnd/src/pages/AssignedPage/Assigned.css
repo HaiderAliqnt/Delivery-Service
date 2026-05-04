@@ -1,0 +1,12 @@
+@import "../SearchingPage/Customer.css";
+
+.card p {
+    text-align: left;
+}
+
+/* Highlight message */
+.message {
+    margin-top: 10px;
+    font-size: 13px;
+    opacity: 0.9;
+}

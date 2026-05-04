@@ -1,4 +1,4 @@
-import { updateOrderStatus,assignDeliverer, createOrder, getOpenOrders, getOrderById, getOrderStatus } from "../models/order.models.js"
+import { updateOrderStatus,assignDeliverer, createOrder, getOpenOrders, getOrderById, getOrderStatus ,getDelivererInfo} from "../models/order.models.js"
 
 export const createOrderService = async(order_data) =>{
 
@@ -128,11 +128,19 @@ export const cancelOrderService = async(order_id) =>{
     }
 }
 
+export const getDelivererInfoService = async (order_id) => {
+    if (!order_id) {
+        throw new Error("Order ID missing");
+    }
 
+    const result = await getDelivererInfo(order_id);
 
+    if (!result) {
+        throw new Error("Order not found");
+    }
 
-
-
+    return result;
+};
 
 //FOR THE DELIVERER
 export const getOpenOrdersService = async(location) =>{

@@ -1,0 +1,21 @@
+@import "./Customer.css";
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Optional loading animation */
+.card::after {
+    content: "⏳";
+    font-size: 30px;
+    margin-top: 10px;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}

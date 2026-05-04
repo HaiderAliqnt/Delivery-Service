@@ -23,6 +23,8 @@ import OrderConfirmationPage from './pages/OrderConfirmation/OrderConfirmation.j
 import OrderConfirmedPage from './pages/OrderConfirmed/OrderConfirmed.jsx'
 import OrderPickedUpPage from './pages/OrderPickedUp/OrderPickedUp.jsx'
 import OrderDeliveredPage from './pages/OrderDelivered/OrderDelivered.jsx'
+import SearchingPage from './pages/SearchingPage/SearchingPage.jsx'
+import AssignedPage from './pages/AssignedPage/Assigned.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +66,18 @@ const router = createBrowserRouter([
       {
         path: "/order/new",
         element: <ProtectedRoute><NewOrderPage/></ProtectedRoute>
+      },
+      {
+        path:"/order/searching",
+        element:<ProtectedRoute><SearchingPage></SearchingPage></ProtectedRoute>
+      },
+      {
+        path: "/order/assigned",
+        element:<ProtectedRoute><AssignedPage></AssignedPage></ProtectedRoute>
+      },
+      {
+        path:"/order/picked",
+        element:<ProtectedRoute><OrderPickedUpPage></OrderPickedUpPage></ProtectedRoute>
       },
       {
         path: "/order/:id",
