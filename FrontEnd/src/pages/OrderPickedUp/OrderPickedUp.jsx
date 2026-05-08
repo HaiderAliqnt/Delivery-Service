@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 import { getStatus } from "../../api/orders";
-import { getOrderID } from "../../utils/auth";
+import { getOrderID , setTime } from "../../utils/auth";
 import NavBar from "../../components/NavBar/NavBar";
+import { updateOrderStatus } from "../../api/orders";
 import "./OrderPickedUp.css";
 
 const containerStyle = {
@@ -17,6 +18,7 @@ const defaultCenter = {
   lat: 33.6844,
   lng: 73.0479
 };
+//THIS IS FOR THE DELIVERER INTERFACE
 
 function OrderPickedUpPage() {
   const navigate = useNavigate();
@@ -43,22 +45,31 @@ function OrderPickedUpPage() {
     fetchOrder();
   }, [orderId]);
 
-  // ⏱ Timer logic
+  //  Timer logic
   useEffect(() => {
     const interval = setInterval(() => {
       setSeconds(prev => prev + 1);
     }, 1000);
 
+    setTime(seconds);
+
     return () => clearInterval(interval);
   }, []);
 
-  const handleDelivered = () => {
-    // later → update backend status to delivered
+
+ const handleDelivered = async (e) => {
+  e.preventDefault();
+
+  try {
+    const data = await updateOrderStatus(orderId, 'delivered');
     navigate("/order/delivered");
-  };
+  } catch (err) {
+    console.error(err);
+  }
+};
 
   if (loading) return <p>Loading...</p>;
-  if (!order) return <p>No order found</p>;
+  if (!order) return <p>No order found..</p>;
 
   return (
     <>
@@ -91,7 +102,7 @@ function OrderPickedUpPage() {
         </div>
 
         {/* Delivered Button */}
-        <button className="delivered-btn" onClick={handleDelivered}>
+        <button type="button" className="delivered-btn" onClick={handleDelivered}>
           DELIVERED
         </button>
 

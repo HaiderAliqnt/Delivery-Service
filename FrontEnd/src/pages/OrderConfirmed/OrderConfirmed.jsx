@@ -34,7 +34,7 @@ function OrderConfirmedPage() {
 
     const handlePickedUp = async() => {
         const data = await updateOrderStatus(orderId , 'picked_up')
-        navigate("/order/picked");
+        navigate("/order/deliverer/picked");
     };
     const handleCancel = () => {
         // later: cancel API

@@ -1,0 +1,101 @@
+/* PickedCustomerPage.css */
+
+#order-picked-customerpage-container {
+    min-height: 100vh;
+    background-color: #0f0f0f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 28px 16px 40px;
+    box-sizing: border-box;
+    gap: 28px;
+    font-family: Arial, sans-serif;
+}
+
+/* STORE NAME SECTION */
+#order-picked-location-section {
+    width: 92%;
+    max-width: 340px;
+    background-color: #8f1313;
+    border-radius: 22px;
+    padding: 26px 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    min-height: 95px;
+    box-sizing: border-box;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* STATUS TEXT SECTION */
+#order-picked-text-section {
+    width: 92%;
+    max-width: 340px;
+    background-color: #8f1313;
+    border-radius: 22px;
+    padding: 28px 20px;
+    color: white;
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    line-height: 1.25;
+    text-align: left;
+    box-sizing: border-box;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* MAP TRACKING SECTION */
+#map-track-pickeduporder {
+    width: 92%;
+    max-width: 360px;
+    background-color: #8f1313;
+    border-radius: 24px;
+    padding: 18px 14px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: border-box;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* TRACK ORDER TITLE */
+#map-track-pickeduporder::before {
+    content: "TRACK YOUR ORDER";
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin-bottom: 18px;
+    text-transform: uppercase;
+    align-self: flex-start;
+}
+
+/* GOOGLE MAP */
+#map-track-pickeduporder .gm-style {
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* RESPONSIVE */
+@media screen and (max-width: 480px) {
+
+    #order-picked-location-section {
+        font-size: 1.5rem;
+        min-height: 85px;
+        padding: 22px 14px;
+    }
+
+    #order-picked-text-section {
+        font-size: 1.5rem;
+        padding: 24px 18px;
+    }
+
+    #map-track-pickeduporder::before {
+        font-size: 1.4rem;
+    }
+}

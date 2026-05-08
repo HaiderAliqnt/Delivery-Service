@@ -49,6 +49,15 @@ export function getOrderID(){
   return localStorage.getItem('orderId')
 }
 
+export function getTime(){
+  return localStorage.getItem('Time')
+}
+
+export function setTime(time){
+  localStorage.setItem('Time' , time)
+}
+
+
 export function getCustomerIdFromToken() {
   const token = getToken();
   if (!token) return null;

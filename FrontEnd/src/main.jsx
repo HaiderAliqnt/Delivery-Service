@@ -25,6 +25,8 @@ import OrderPickedUpPage from './pages/OrderPickedUp/OrderPickedUp.jsx'
 import OrderDeliveredPage from './pages/OrderDelivered/OrderDelivered.jsx'
 import SearchingPage from './pages/SearchingPage/SearchingPage.jsx'
 import AssignedPage from './pages/AssignedPage/Assigned.jsx'
+import DeliveredCustomerPage from './pages/DeliveredCustomerPage/DeliveredCustomerPage.jsx'
+import PickedCustomerPage from './pages/PickedCustomerPage/PickedCustomerPage.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -76,8 +78,12 @@ const router = createBrowserRouter([
         element:<ProtectedRoute><AssignedPage></AssignedPage></ProtectedRoute>
       },
       {
-        path:"/order/picked",
-        element:<ProtectedRoute><OrderPickedUpPage></OrderPickedUpPage></ProtectedRoute>
+        path:"/order/customer/picked",
+        element:<ProtectedRoute><PickedCustomerPage/></ProtectedRoute>
+      },
+      {
+        path:"/order/customer/delivered",
+        element:<ProtectedRoute><DeliveredCustomerPage/></ProtectedRoute>
       },
       {
         path: "/order/:id",
@@ -101,7 +107,7 @@ const router = createBrowserRouter([
         element:<ProtectedRoute><OrderConfirmedPage/></ProtectedRoute>
       },
       {
-        path:"/order/picked",
+        path:"/order/deliverer/picked",
         element:<ProtectedRoute><OrderPickedUpPage/></ProtectedRoute>
       },
       {

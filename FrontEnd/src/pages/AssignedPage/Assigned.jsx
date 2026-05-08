@@ -34,7 +34,7 @@ export default function AssignedPage() {
     
     useEffect(() => {
     if (deliverData?.status === "picked_up") {
-        navigate("/order/picked");
+        navigate("/order/customer/picked");
     }
     }, [deliverData, navigate]);
 

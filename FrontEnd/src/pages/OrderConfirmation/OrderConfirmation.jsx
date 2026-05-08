@@ -45,7 +45,8 @@ function OrderConfirmationPage() {
         }
 
         await claimOrder(orderId , deliverer_id);
-        navigate("/orderConfirmed"); // Or wherever after claiming
+        
+        navigate("/orderConfirmed"); 
     } catch (err) {
         setError("FAILED TO CLAIM ORDER");
     }

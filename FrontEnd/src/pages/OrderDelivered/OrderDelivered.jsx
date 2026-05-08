@@ -4,7 +4,9 @@ import { getStatus } from "../../api/orders";
 import { getOrderID } from "../../utils/auth";
 import NavBar from "../../components/NavBar/NavBar";
 import "./OrderDelivered.css";
+import { updateOrderStatus } from "../../api/deliverer";
 
+//THIS IS FOR THE DELIVERER INTERFACE
 function OrderDeliveredPage() {
     const navigate = useNavigate();
     const orderId = getOrderID();
@@ -32,8 +34,8 @@ function OrderDeliveredPage() {
         fetchOrder();
     }, [orderId]);
 
-    const handleBackToFeed = () => {
-        navigate("/deliver/feed");
+    const handleBackToDelivererHome = () => {
+        navigate("/home/deliverer");
     };
 
     if (loading) return <p>Loading...</p>;
@@ -73,7 +75,7 @@ function OrderDeliveredPage() {
                 </div>
 
                 {/* Back Button */}
-                <button className="back-btn" onClick={handleBackToFeed}>
+                <button className="back-btn" onClick={handleBackToDelivererHome}>
                     BACK TO FEED
                 </button>
 
