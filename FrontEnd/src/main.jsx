@@ -49,36 +49,36 @@ const router = createBrowserRouter([
         path: "/home",
         element: <ProtectedRoute><HomePage/></ProtectedRoute>
       },
-      {
+      { //deliverer home page
         path: "/home/deliverer",
         element: <ProtectedRoute><DelivererHomePage/></ProtectedRoute>
       },
       {
-        path: "/browse/npcs",
+        path: "/browse/npcs", //never used in the project
         element: <ProtectedRoute><NPCListPage/></ProtectedRoute>
       },
       {
-        path: "/browse/npcs/:id",
+        path: "/browse/npcs/:id", //never used in the project
         element: <ProtectedRoute><NPCDetailPage/></ProtectedRoute>
       },
       {
-        path: "/order/new/shop",
+        path: "/order/new/shop", //have to integrate this route 
         element: <ProtectedRoute><ShopSelectPage/></ProtectedRoute>
       },
       {
-        path: "/order/new",
+        path: "/order/new", //customer pov
         element: <ProtectedRoute><NewOrderPage/></ProtectedRoute>
       },
       {
-        path:"/order/searching",
+        path:"/order/searching", //customer searching for deliverers
         element:<ProtectedRoute><SearchingPage></SearchingPage></ProtectedRoute>
       },
       {
-        path: "/order/assigned",
+        path: "/order/assigned", //assigned page customer sees
         element:<ProtectedRoute><AssignedPage></AssignedPage></ProtectedRoute>
       },
       {
-        path:"/order/customer/picked",
+        path:"/order/customer/picked", //customer sees this when order gets picked
         element:<ProtectedRoute><PickedCustomerPage/></ProtectedRoute>
       },
       {
@@ -95,7 +95,7 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><DelivererFeedPage/></ProtectedRoute>
       },
       {
-        path: "/deliver/:id",
+        path: "/deliver/:id", //not used in the project
         element: <ProtectedRoute><DelivererOrderPage/></ProtectedRoute>
       },
       {
