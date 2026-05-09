@@ -3,7 +3,7 @@ import './OrderCard.css';
 
 function OrderCard({ order, onClaim }) {
   return (
-    <div className="order-card">
+    <div className="order-card" onClick={onClaim}>
       <div className="order-header">
         <span className="order-store">{order.store}</span>
         <span className="order-customer">@{order.customer_name}</span>
@@ -14,9 +14,6 @@ function OrderCard({ order, onClaim }) {
         <p className="order-preview">Room : {order.delivery_room}</p>
         <p className="order-preview">Total : {order.total_price}</p>
       </div>
-      <button className="order-claim-btn" onClick={onClaim}>
-        CLAIM
-      </button>
     </div>
   );
 }
