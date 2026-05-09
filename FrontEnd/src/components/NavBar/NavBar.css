@@ -1,38 +1,46 @@
 .navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 16px 24px;
-  background-color: var(--bg-primary);
-  position: sticky;
-  top: 0;
-  z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 24px 0;
+    background-color: var(--bg-primary);
+    gap: 0;
 }
 
 .nav-back-button {
-  background: transparent;
-  color: var(--text-muted);
-  border: none;
-  font-family: "Jersey 25", monospace;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 8px 0;
-  text-align: left;
-  transition: color 0.1s;
+    background: transparent;
+    color: var(--text-muted);
+    border: none;
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0 0 8px 0;
+    text-align: left;
+    transition: color 0.1s;
+    align-self: flex-start;
 }
 
 .nav-back-button:hover {
-  color: var(--text-primary);
+    color: var(--text-primary);
 }
 
 .nav-title {
-  margin: 0;
-  color: var(--text-primary);
-  font-family: "Jersey 25", monospace;
-  font-size: 2.5rem;
-  text-transform: uppercase;
+    margin: 0;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-align: center;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    padding: 28px 16px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.nav-title:empty {
+    display: none;
 }
 
 .nav-spacer {
-  width: 60px; /* Balances the layout with the back button */
+    display: none;
 }

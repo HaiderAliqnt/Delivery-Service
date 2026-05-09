@@ -1,0 +1,40 @@
+/* ShopSelectPage — matches outside_giki.jpg Figma */
+
+.shop-select-content {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  flex: 1;
+  gap: 24px;
+}
+
+.shop-card-container {
+  background-color: var(--bg-card);
+  border-radius: 15px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.shop-button {
+  width: 100%;
+  height: 56px;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  border: 2px solid var(--bg-card);
+  border-radius: 10px;
+  font-family: var(--font-family);
+  font-size: 2rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.shop-button:hover {
+  opacity: 0.8;
+}
+
+.shop-button:active {
+  transform: scale(0.98);
+}

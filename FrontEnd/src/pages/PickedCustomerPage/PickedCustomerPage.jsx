@@ -2,26 +2,16 @@ import React from "react";
 import './PickedCustomerPage.css'
 import { useState , useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getOrderID } from "../../utils/auth";
-import { GoogleMap } from "@react-google-maps/api";
+import { getOrderID, getStore } from "../../utils/auth";
+// import { GoogleMap } from "@react-google-maps/api"; // Not installed
 import { getStatus } from "../../api/orders";
-const containerStyle = {
-  width: "300px",
-  height: "180px",
-  borderRadius: "15px"
-};
-
-// ⚠️ Replace with dynamic coords later
-const defaultCenter = {
-  lat: 33.6844,
-  lng: 73.0479
-};
+import NavBar from "../../components/NavBar/NavBar";
 
 export default function PickedCustomerPage(){
 
     const navigate = useNavigate();
     const orderId = getOrderID();
-    
+    const store = getStore() || "GEN. STORE";
 
     const[order , setOrder] = useState(null);
     const[loading , setLoading] = useState(true);
@@ -35,6 +25,7 @@ export default function PickedCustomerPage(){
             const orderData = data?.order_status ?? data;
 
             setOrder(orderData);
+            setLoading(false);
 
             
             if (orderData.status === "delivered") {
@@ -60,36 +51,21 @@ export default function PickedCustomerPage(){
     if (loading) return <p>Loading...</p>;
     if (!order) return <p>No order found..</p>;
 
-
-
-
     return(
         <>
             <div id="order-picked-customerpage-container">
-                <div id="order-picked-location-section">
-
-                </div>
+                <NavBar title={store} />
                 <div id="order-picked-text-section">
-                    PICKED UP...
-                    YOUR ORDER IS OTW!!!
+                    PICKED UP....
+                    YOUR ORDER IS OTW !!!!
                 </div>
                 <div id="map-track-pickeduporder">
-                    <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-                        <GoogleMap
-                            mapContainerStyle={containerStyle}
-                            center={defaultCenter}
-                            zoom={14}
-                        >
-                            <Marker position={defaultCenter} />
-                        </GoogleMap>
-                        </LoadScript>
+                    {/* Map placeholder — will be replaced with Google Maps later */}
+                    <div className="map-placeholder">
+                        MAP WILL BE SHOWN HERE
+                    </div>
                 </div>
             </div>
-        
-        
         </>
     )    
-    
-
 }
-
