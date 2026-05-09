@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import StoreButton from '../../components/StoreButton/StoreButton';
+import './ShopSelectPage.css';
 
 const SHOPS = ['TAHIR KHAN', 'AMIR KHAN', 'BANNU BEEF', 'BIRYANI'];
 
@@ -18,10 +19,11 @@ function ShopSelectPage() {
     <div className="page-container">
       <NavBar title={store} />
 
-      <div className="page-content">
+      <div className="shop-select-content">
         <p className="section-label">CHOOSE SHOP</p>
 
-        <div className="store-list" style={{ marginTop: '24px' }}>
+        <div className="shop-card-container">
+
           {SHOPS.map((shop) => (
             <StoreButton
               key={shop}

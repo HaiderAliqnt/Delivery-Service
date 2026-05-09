@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
+// import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api"; // Not installed
 import { getStatus } from "../../api/orders";
 import { getOrderID , setTime } from "../../utils/auth";
 import NavBar from "../../components/NavBar/NavBar";
 import { updateOrderStatus } from "../../api/orders";
 import "./OrderPickedUp.css";
-
-const containerStyle = {
-  width: "300px",
-  height: "180px",
-  borderRadius: "15px"
-};
 
 // ⚠️ Replace with dynamic coords later
 const defaultCenter = {
@@ -84,16 +78,10 @@ function OrderPickedUpPage() {
 
         <h2>ORDER PICKED UP</h2>
 
-        {/* Google Map */}
-        <LoadScript googleMapsApiKey="YOUR_GOOGLE_MAPS_API_KEY">
-          <GoogleMap
-            mapContainerStyle={containerStyle}
-            center={defaultCenter}
-            zoom={14}
-          >
-            <Marker position={defaultCenter} />
-          </GoogleMap>
-        </LoadScript>
+        {/* Map Placeholder */}
+        <div className="map-placeholder">
+          MAP WILL BE SHOWN HERE
+        </div>
 
         {/* Timer */}
         <div className="timer-card">
@@ -111,4 +99,4 @@ function OrderPickedUpPage() {
   );
 }
 
-export default OrderPickedUpPage;
+export default OrderPickedUpPage;

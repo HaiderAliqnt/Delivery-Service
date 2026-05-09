@@ -65,12 +65,12 @@ function NewOrderPage() {
     <div className="page-container">
       <NavBar title={store} />
 
-      <div className="page-content" style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
+      <div className="page-content new-order-content">
         {error && <div className="error-panel">{error}</div>}
 
-        <p className="section-label">ENTER YOUR ORDER</p>
+        <p className="section-label">ENTER ORDER DETAILS</p>
 
-        {store && <p className="muted-text" style={{margin: '0 0 16px 0', textAlign: 'left'}}>SELECTED SHOP: {store}</p>}
+
 
         <textarea
           className="order-textarea"
@@ -104,7 +104,7 @@ function NewOrderPage() {
       </div>
         
       <button className="submit-order-button" onClick={handleSubmit}>
-          SUBMIT
+          CONFIRM
       </button>
       </div>
     </div>

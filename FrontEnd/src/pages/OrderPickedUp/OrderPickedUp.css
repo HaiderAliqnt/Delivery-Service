@@ -1,56 +1,94 @@
+/* OrderPickedUp — matches OrderPicked_up_page_deliverer_pov.jpg */
+
 .picked-container {
-    background-color: #0d0d0d;
+    background-color: var(--bg-primary);
     min-height: 100vh;
-    color: white;
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 24px;
+    gap: 24px;
+    font-family: var(--font-family);
 }
 
 /* Store header */
-.store-name {
-    background-color: #8b1a1a;
-    padding: 20px 40px;
-    border-radius: 25px;
-    font-size: 22px;
-    font-weight: bold;
-    margin-bottom: 20px;
+.picked-container .store-name {
+    width: 100%;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    color: var(--text-primary);
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: var(--font-family);
+    padding: 28px 16px;
+    text-transform: uppercase;
+    margin-bottom: 0;
 }
 
 /* Title */
 .picked-container h2 {
-    margin-bottom: 15px;
-    letter-spacing: 2px;
+    margin: 8px 0;
+    font-size: 2rem;
+    font-family: var(--font-family);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    width: 100%;
 }
 
-/* Timer Card */
+/* Map placeholder */
+.map-placeholder {
+    width: 100%;
+    height: 200px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+    overflow: hidden;
+}
+
+/* Timer card */
 .timer-card {
-    margin-top: 20px;
-    background-color: #8b1a1a;
-    padding: 20px;
-    border-radius: 20px;
+    margin-top: auto;
+    width: 100%;
+    background-color: var(--bg-card);
+    border-radius: 15px;
+    padding: 24px;
     text-align: center;
-    width: 250px;
+    font-family: var(--font-family);
 }
 
 .timer-card h3 {
-    margin-bottom: 10px;
+    margin: 0 0 12px 0;
+    font-size: 2rem;
+    font-family: var(--font-family);
+    text-transform: uppercase;
 }
 
-/* Delivered Button */
+.timer-card p {
+    font-size: 1.5rem;
+    font-family: var(--font-family);
+    margin: 0;
+}
+
+/* Delivered button */
 .delivered-btn {
-    margin-top: 20px;
-    background-color: #2e7d32;
-    color: white;
+    background-color: var(--accent-green);
+    color: var(--text-primary);
     border: none;
-    padding: 12px 30px;
-    border-radius: 20px;
-    font-size: 16px;
+    border-radius: 15px;
+    padding: 14px 40px;
+    font-size: 1.5rem;
+    font-family: var(--font-family);
+    text-transform: uppercase;
     cursor: pointer;
+    transition: opacity 0.2s;
 }
 
 .delivered-btn:hover {
-    transform: scale(1.05);
-    transition: 0.2s ease;
+    opacity: 0.85;
 }

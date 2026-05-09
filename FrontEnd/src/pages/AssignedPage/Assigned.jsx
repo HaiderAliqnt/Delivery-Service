@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "../SearchingPage/Customer.css";
+import NavBar from "../../components/NavBar/NavBar";
 import "./Assigned.css";
-import { getOrderID } from "../../utils/auth";
+import { getOrderID, getStore } from "../../utils/auth";
 import { getDelivererInfo } from "../../api/deliverer";
 import { useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ export default function AssignedPage() {
     const [deliverData, setDelivererData] = useState(null);
     const [error, setError] = useState(null);
     const order_id = getOrderID();
+    const store = getStore() || "GEN. STORE";
 
     useEffect(() => {
         if (!order_id) return;
@@ -48,16 +49,23 @@ export default function AssignedPage() {
     }
 
     return (
-        <div className="card">
-            <h2>ORDER ASSIGNED</h2>
+        <div className="assigned-page">
+            <NavBar title={store} />
 
-            <p><strong>Name:</strong> {deliverData?.deliverer_name}</p>
-            <p><strong>Rating:</strong> {deliverData?.deliverer_rating}</p>
-            <p><strong>Phone:</strong> {deliverData?.deliverer_phone}</p>
+            <div className="assigned-avatar">
+                {/* Avatar image will be added later */}
+            </div>
 
-            <p className="message">
-                Your order has been assigned, waiting for pickup
-            </p>
+            <div className="assigned-details-card">
+                <h3>DELIVERER DETAILS</h3>
+                <p>{deliverData?.deliverer_name}</p>
+                <p>{deliverData?.deliverer_rating}</p>
+                <p>{deliverData?.deliverer_phone}</p>
+            </div>
+
+            <div className="assigned-status-card">
+                YOUR ORDER HAS BEEN ASSIGNED.... WAITING FOR PICKUP
+            </div>
         </div>
     );
 }

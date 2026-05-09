@@ -56,22 +56,14 @@ function OrderDeliveredPage() {
                 {/* Success Message */}
                 <h2>ORDER DELIVERED</h2>
 
-                {/* Summary */}
+                {/* Time Taken Card */}
                 <div className="delivered-card">
-                    <h3>SUMMARY</h3>
-
-                    <p><strong>Location:</strong> {order.delivery_hostel}</p>
-                    <p><strong>Room:</strong> {order.delivery_room}</p>
-                    <p><strong>Price:</strong> {order.total_price}</p>
-
-                    <p className="instructions">
-                        {order.special_instructions}
-                    </p>
+                    <h3>TIME TAKEN</h3>
                 </div>
 
-                {/* Success Icon */}
-                <div className="success-icon">
-                    ✔
+                {/* Motivational Quote */}
+                <div className="motivational-text">
+                    " THATS A NEW HIGH CHAMP
                 </div>
 
                 {/* Back Button */}

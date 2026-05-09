@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import NavBar from "../../components/NavBar/NavBar";
 import { useNavigate } from "react-router-dom";
 import { getStatus } from "../../api/orders";
-import { getOrderID } from "../../utils/auth";
-import "./Customer.css";
+import { getOrderID, getStore } from "../../utils/auth";
 import "./SearchingPage.css";
 
 export default function SearchingPage() {
   const navigate = useNavigate();
   const orderId = getOrderID();
+  const store = getStore() || "GEN. STORE";
 
   const [order, setOrder] = useState(null);
 
@@ -44,14 +44,14 @@ export default function SearchingPage() {
   }, [orderId, navigate]);
 
   return (
-    <>
-      <NavBar />
-      <div className="customer-container">
-        <div className="card">
-          <h2>SIT TIGHT</h2>
-          <p>We are looking for someone to fetch your order...</p>
-        </div>
+    <div className="searching-page">
+      <NavBar title={store} />
+      <div className="searching-text">
+        SEARCHING FOR SOMEONE TO FETCH YOUR ORDER......
       </div>
-    </>
+      <div className="searching-character-area">
+        {/* Character image will be added later */}
+      </div>
+    </div>
   );
 }
