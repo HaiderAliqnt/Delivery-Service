@@ -173,8 +173,6 @@ GIKGo differs from traditional delivery platforms (e.g., Foodpanda, Careem) in s
 
 ---
 
----
-
 ##  Target Users
 
 - Students living on campus
@@ -182,6 +180,6 @@ GIKGo differs from traditional delivery platforms (e.g., Foodpanda, Careem) in s
 - Campus shops and service providers (future extension)
 
 
-## 📌 Conclusion
+## Conclusion
 
 GIKGo is a scalable, efficient, and community-driven delivery system tailored for campus environments. It combines strong database design with practical system implementation, making it both academically rigorous and industry-relevant.
