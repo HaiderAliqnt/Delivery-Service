@@ -161,3 +161,24 @@ export const getOrdersController = async (req , res) => {
     }
 
 }
+
+import { parseOrderText } from '../services/orderParser.service.js';
+import { getAllProductsWithAliases } from '../models/product.model.js';
+
+export const estimateOrder = async (req, res) => {
+    try {
+        const { text } = req.body;
+
+        if (!text || text.trim() === '') {
+            return res.status(400).json({ error: 'Order text is required' });
+        }
+
+        const products = await getAllProductsWithAliases();
+        const result = parseOrderText(text, products);
+
+        res.status(200).json(result);
+    } catch (err) {
+        console.error('Error estimating order:', err);
+        res.status(500).json({ error: 'Internal server error' });
+    }
+};

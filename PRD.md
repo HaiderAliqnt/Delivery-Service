@@ -469,3 +469,103 @@ When in doubt between this document and the screenshot — **the screenshot wins
 ---
 
 *Last updated: April 2026 — GIKIGo CS232 DBMS Project, GIKI*
+Good, now I have the full picture. A few things jump out immediately:
+
+**What Antigravity has already built beyond the PRD:**
+
+The frontend is way more fleshed out than the original PRD accounted for. There are pages that didn't exist in the PRD at all — `AssignedPage`, `SearchingPage`, `OrderConfirmation`, `OrderConfirmed`, `OrderDelivered`, `OrderPickedUp`, `DeliveredCustomerPage`, `PickedCustomerPage`, `OutsideGikiPage`. This means the order status flow has been broken into individual pages rather than one `OrderStatusPage` with states. That's actually a better UX decision for a mobile-first app — don't fight it.
+
+The PRD is now partially stale. Here's what you should do:
+
+---
+
+**Update the PRD with this addendum — paste it at the bottom:**
+
+---
+
+> ## ADDENDUM — Actual File Structure (May 2026)
+>
+> The following reflects the real project state. This overrides §3 (Routing Map) and §4 (Pages) where they conflict.
+>
+> ### Confirmed folder structure
+>
+> ```
+> FrontEnd/src/
+> ├── api/                        ← API stub layer (build here)
+> ├── assets/                     ← sprites, images
+> ├── utils/                      ← auth.js lives here
+> ├── components/
+> │   ├── DelivererCard/
+> │   ├── LoadingPixel/
+> │   ├── NavBar/
+> │   ├── OrderCard/
+> │   ├── ProtectedRoute/
+> │   ├── SignIn/                 ← DONE, do not touch
+> │   ├── SignUp/                 ← DONE, do not touch
+> │   ├── StatusBar/
+> │   ├── StoreButton/
+> │   └── Title/                  ← DONE, do not touch
+> └── pages/
+>     ├── HomePage/
+>     ├── DelivererHomePage/
+>     ├── NPCListPage/
+>     ├── NPCDetailPage/
+>     ├── SearchingPage/          ← shown while waiting for deliverer to accept
+>     ├── OutsideGikiPage/        ← store selection for Outside GIK
+>     ├── ShopSelectPage/
+>     ├── NewOrderPage/
+>     ├── OrderConfirmation/      ← review order before submitting
+>     ├── OrderConfirmed/         ← order placed successfully
+>     ├── OrderStatusPage/        ← live status (parent/router)
+>     ├── OrderPickedUp/          ← customer view: order picked up
+>     ├── PickedCustomerPage/
+>     ├── OrderDelivered/         ← customer view: order delivered
+>     ├── DeliveredCustomerPage/
+>     ├── AssignedPage/           ← deliverer view: order assigned to them
+>     ├── DelivererFeedPage/
+>     ├── DelivererOrderPage/
+>     ├── ProfilePage/
+>     └── ErrorPanel/
+> ```
+>
+> ### Revised order status flow
+>
+> The status is NOT a single page with conditional rendering. Each state is its own page:
+>
+> ```
+> Customer side:
+> NewOrderPage → OrderConfirmation → SearchingPage → OrderConfirmed
+>             → OrderPickedUp / PickedCustomerPage
+>             → OrderDelivered / DeliveredCustomerPage
+>
+> Deliverer side:
+> DelivererFeedPage → AssignedPage → DelivererOrderPage
+> ```
+>
+> ### Backend folder structure
+>
+> ```
+> BackEnd/src/
+> ├── controller/     ← route handler functions
+> ├── DB/             ← pool connection (index.js)
+> ├── middleware/     ← auth middleware goes here
+> ├── models/         ← table creation functions
+> ├── routes/         ← express routers
+> ├── services/       ← business logic (parser, etc.)
+> ├── tests/          ← jest test files
+> └── utils/          ← helper functions
+> ```
+>
+> ### Key facts for Antigravity
+>
+> - Each component/page lives in its **own folder** with its own `.jsx` and `.css` file inside. Example: `NavBar/NavBar.jsx` + `NavBar/NavBar.css`. Follow this pattern for every new file.
+> - `node_modules` contains: `react-router-dom`, `zod` (validation already available — use it), `react`, `vite`. Do not add packages.
+> - `zod` is already installed — use it for frontend form validation instead of manual checks.
+> - `public/reference-images/` exists — Figma exports should go here for Antigravity to reference.
+> - Backend port is `8000`. Frontend API calls go to `http://localhost:8000/api/...`.
+> - ESM only (`import/export`) — no `require()` anywhere in backend.
+> - Backend uses `nodemon` for dev — already in dependencies.
+
+---
+> "Reference images for each page are in `FrontEnd/public/reference-images/`. The filename matches the page folder name. Load the relevant image before building each page."
+
