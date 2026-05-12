@@ -149,7 +149,7 @@ const seedData = [
     ]
   },
   {
-    store: 'Biryani',
+    store: 'Naseeb Biryani',
     items: [
       { name: 'Chicken Biryani',  price: 280,  aliases: ['biryani', 'chicken biryani', 'biriyani'] },
       { name: 'Beef Biryani',     price: 320,  aliases: ['beef biryani', 'gosht biryani'] },

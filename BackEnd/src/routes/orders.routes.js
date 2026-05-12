@@ -1,5 +1,5 @@
 import express from "express";
-import { assignDelivererController, cancelOrderController, createOrderController, getDelivererInfoController, getOrdersController, getOrderStatusController, updateOrderStatusController } from "../controller/order.controller.js";
+import { estimateOrder, assignDelivererController, cancelOrderController, createOrderController, getDelivererInfoController, getOrdersController, getOrderStatusController, updateOrderStatusController } from "../controller/order.controller.js";
 
 const orderRouter = express.Router();
 
@@ -10,7 +10,7 @@ orderRouter.put("/:orderId/status", updateOrderStatusController)
 orderRouter.post("/:orderId/assign-deliverer", assignDelivererController)
 orderRouter.get("/:orderId", getOrderStatusController)
 orderRouter.get("/:orderId/deliverer", getDelivererInfoController);
-
+orderRouter.post('/estimate', estimateOrder);
 
 
 export default orderRouter

@@ -5,8 +5,13 @@ import pgSession from "connect-pg-simple";
 import { pool } from "./DB/index.js"
 import { createUserTable } from "./models/user.model.js";
 import { createOrdersTable } from "./models/order.models.js";
+import { createProductTables } from "./models/product.model.js";
+import { createBatchTable } from "./models/batch.models.js";
 import userRouter from "./routes/user.routes.js";
 import orderRouter from "./routes/orders.routes.js";
+import Batchrouter from "./routes/batch.routes.js";
+import { createRatingTable } from "./models/rating.model.js";
+
 
 const app = express();
 
@@ -53,8 +58,18 @@ await createOrdersTable()
     .then(()=>console.log("Orders table created succesfully"))
     .catch((error)=>console.log("Error creating orders table" ,error.message))
 
+await createProductTables()
+    .then(()=>console.log("Stores , products , and aliases table created successfully"))
+    .catch((error)=>console.log("Error creating the product related tables " ,error.message))
 
+await createBatchTable()
+    .then(()=>console.log("batch table created successfully"))
+    .catch((error)=>console.log("Error creating batch table " ,error.message))
 
+await createRatingTable()
+    .then(()=>console.log("rating table created successfully"))
+    .catch((err)=>console.log("error creating rating table " ,err.message))
 // ROUTES
 app.use("/user" , userRouter);
-app.use("/order" , orderRouter)
+app.use("/order" , orderRouter);
+app.use("/batches", Batchrouter);
