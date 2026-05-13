@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import NavBar from '../../components/NavBar/NavBar';
 import LoadingPixel from '../../components/LoadingPixel/LoadingPixel';
-import { createOrder } from "../../api/orders";
+import { createOrder , estimateOrder } from "../../api/orders";
 import './NewOrderPage.css';
 import { getCustomerIdFromToken, getStore } from '../../utils/auth';
 
@@ -17,8 +17,47 @@ function NewOrderPage() {
   const [error, setError] = useState(null);
   const [dropLocation, setDropLocation] = useState('');
   const [roomNumber, setRoomNumber] = useState('');
+  const [estimatedTotal, setEstimatedTotal] = useState(0);
+  const [matchedItems, setMatchedItems] = useState([]);
+  const [unmatchedItems, setUnmatchedItems] = useState([]);
 
-  
+  const handleEstimate = async (text) => {
+
+  try {
+
+    if (!text.trim()) {
+
+      setEstimatedTotal(0);
+
+      setMatchedItems([]);
+
+      setUnmatchedItems([]);
+
+      return;
+    }
+
+    const data = await estimateOrder(text);
+
+    setEstimatedTotal(
+      data.estimatedTotal || 0
+    );
+
+    setMatchedItems(
+      data.matched || []
+    );
+
+    setUnmatchedItems(
+      data.unmatched || []
+    );
+
+  } catch (err) {
+
+    console.error(
+      "Estimate failed:",
+      err
+    );
+  }
+};
 
  
   const handleSubmit = async () => {
@@ -45,7 +84,7 @@ function NewOrderPage() {
       delivery_hostel: dropLocation,
       delivery_room: roomNumber,
       special_instructions: orderText,
-      total_price: 150,
+      total_price: estimatedTotal,
     }; 
 
     const response = await createOrder(payload);
@@ -76,7 +115,14 @@ function NewOrderPage() {
           className="order-textarea"
           placeholder="TYPE HERE..."
           value={orderText}
-          onChange={(e) => setOrderText(e.target.value)}
+          onChange={(e) => {
+
+            const value = e.target.value;
+
+            setOrderText(value);
+
+            handleEstimate(value);
+          }}
         />
 
       <div className="form-field">
@@ -85,7 +131,7 @@ function NewOrderPage() {
           id="drop-location"
           className="text-input"
           type="text"
-          placeholder="Hostel / building"
+          placeholder="Hostel / building....FORMAT: H10 , H9 , FME"
           value={dropLocation}
           onChange={(e) => setDropLocation(e.target.value)}
         />
@@ -101,6 +147,13 @@ function NewOrderPage() {
             value={roomNumber}
             onChange={(e) => setRoomNumber(e.target.value)}
           />
+      </div>
+      <div className="estimate-panel">
+
+        <p>
+          ESTIMATED TOTAL: Rs {estimatedTotal}
+        </p>
+
       </div>
         
       <button className="submit-order-button" onClick={handleSubmit}>

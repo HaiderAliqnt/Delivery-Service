@@ -66,3 +66,20 @@ export async function getMyOpenDeliveries(user_id){
   return result
 }
 
+export async function estimateOrder(text){
+  
+  const res = await fetch(
+    `${FETCH_URL}/order/estimate`,
+    {
+      method: "POST",
+
+      headers: {
+        "Content-Type": "application/json"
+      },
+
+      body: JSON.stringify({ text })
+    }
+  );
+
+  return res.json();
+}

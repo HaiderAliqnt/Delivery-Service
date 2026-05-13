@@ -5,7 +5,7 @@ import pgSession from "connect-pg-simple";
 import { pool } from "./DB/index.js"
 import { createUserTable } from "./models/user.model.js";
 import { createOrdersTable } from "./models/order.models.js";
-import { createProductTables } from "./models/product.model.js";
+import { createProductTables, seedProducts } from "./models/product.model.js";
 import { createBatchTable } from "./models/batch.models.js";
 import userRouter from "./routes/user.routes.js";
 import orderRouter from "./routes/orders.routes.js";
@@ -62,6 +62,9 @@ await createProductTables()
     .then(()=>console.log("Stores , products , and aliases table created successfully"))
     .catch((error)=>console.log("Error creating the product related tables " ,error.message))
 
+await seedProducts()
+    .then(()=>console.log("seed data entered"))
+    .catch(()=>console.log ("error pushing seed data"))
 await createBatchTable()
     .then(()=>console.log("batch table created successfully"))
     .catch((error)=>console.log("Error creating batch table " ,error.message))
