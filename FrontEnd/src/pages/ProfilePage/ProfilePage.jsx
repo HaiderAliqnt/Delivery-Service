@@ -53,7 +53,7 @@ function ProfilePage() {
                 {profile.avatar ? (
                   <img src={profile.avatar} alt="avatar" />
                 ) : (
-                  <div className="avatar-placeholder-large" />
+                  <img src="/pixelartboy.png" alt="avatar" className="avatar-placeholder-large" />
                 )}
               </div>
               <div className="profile-titles">

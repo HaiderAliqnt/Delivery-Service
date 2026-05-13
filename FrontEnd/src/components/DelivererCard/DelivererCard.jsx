@@ -12,7 +12,7 @@ function DelivererCard({ deliverer, onClick }) {
         {deliverer.avatar ? (
           <img src={deliverer.avatar} alt={deliverer.name} />
         ) : (
-          <div className="avatar-placeholder"></div>
+          <img src="/pixelartboy.png" alt={deliverer.name} className="avatar-placeholder" />
         )}
       </div>
     </div>

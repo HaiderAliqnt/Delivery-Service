@@ -53,7 +53,7 @@ export default function AssignedPage() {
             <NavBar title={store} />
 
             <div className="assigned-avatar">
-                {/* Avatar image will be added later */}
+                <img src="/pixelartboy.png" alt="Deliverer Avatar" />
             </div>
 
             <div className="assigned-details-card">

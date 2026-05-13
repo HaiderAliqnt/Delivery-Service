@@ -60,7 +60,7 @@ function NPCDetailPage() {
             {npc.avatar ? (
               <img src={npc.avatar} alt={npc.name} />
             ) : (
-              <div className="avatar-placeholder-large" />
+              <img src="/pixelartboy.png" alt={npc.name} className="avatar-placeholder-large" />
             )}
           </div>
         </div>

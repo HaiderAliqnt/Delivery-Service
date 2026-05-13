@@ -188,7 +188,7 @@ function DeliveredCustomerPage() {
 
                 <div className="icon-time-display">
 
-                    <div id="icon"></div>
+                    <img id="icon" src="/pixelartboy.png" alt="Deliverer Avatar" />
 
                     <div id="time-box">
 

@@ -75,7 +75,7 @@ function OrderStatusPage() {
                  {order.deliverer.avatar ? (
                    <img src={order.deliverer.avatar} alt={order.deliverer.name} />
                  ) : (
-                   <div className="avatar-placeholder-mini" />
+                   <img src="/pixelartboy.png" alt={order.deliverer.name} className="avatar-placeholder-mini" />
                  )}
               </div>
               <p className="deliverer-name-mini">{order.deliverer.name}</p>
