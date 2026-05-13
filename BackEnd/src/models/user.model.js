@@ -13,17 +13,9 @@ export const createUserTable = async () => {
             password VARCHAR(255) NOT NULL,
             phone_number VARCHAR(20) NOT NULL,
             role VARCHAR(50) NOT NULL CHECK (role IN ('customer', 'deliverer')),
-            rating VARCHAR(50) NOT NULL CHECK (
-                rating IN (
-                    'True Deliverer',
-                    'High Tier Deliverer',
-                    'Middle Tier Deliverer',
-                    'Low Tier Deliverer',
-                    'Basic Deliverer'
-                )
-            ),
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-            );
+            rating VARCHAR(50),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        );
     `)
         console.log("User table created successfully")
     }

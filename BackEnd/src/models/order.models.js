@@ -15,7 +15,7 @@ export const createOrdersTable = async()=>{
                 delivery_room VARCHAR(255),
                 special_instructions VARCHAR(255),
                 total_price NUMERIC(10,2) NOT NULL,
-                status VARCHAR(20) NOT NULL CHECK(status IN ('open','claimed','picked_up','in_progress','delivered','cancelled')),
+                status VARCHAR(20) ,
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
             );
         `)
@@ -162,6 +162,11 @@ export const getMyOpenDeliveries = async(user_id) =>{
 
 
 
-
+//USE THIS QUERY TO ALTER ORDERS TABLE 
+// ALTER TABLE orders
+// ADD COLUMN batch_id INT REFERENCES batch(batch_id) ON DELETE SET NULL,
+// ADD COLUMN delivery_sequence INT,
+// ADD COLUMN batch_status VARCHAR(20),
+// ADD COLUMN is_batched BOOLEAN DEFAULT FALSE;
 
 
