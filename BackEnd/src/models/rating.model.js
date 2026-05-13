@@ -9,7 +9,7 @@ export const createRatingTable = async()=>{
                 reviewer_id INT REFERENCES users(user_id) NOT NULL,
                 reviewee_id INT REFERENCES users(user_id) NOT NULL,
                 score INT,
-                feedback INT
+                feedback VARCHAR(100)
             );
         
         `)

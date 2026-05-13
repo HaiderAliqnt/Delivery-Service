@@ -135,3 +135,89 @@
 #navigate-home:hover {
     opacity: 0.8;
 }
+/* =========================================
+   FEEDBACK TEXTAREA
+========================================= */
+
+.feedback-box {
+    width: 100%;
+    max-width: 500px;
+    min-height: 120px;
+
+    background-color: var(--bg-card);
+
+    color: var(--text-primary);
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 16px;
+
+    font-size: 1.1rem;
+
+    font-family: var(--font-family);
+
+    resize: none;
+
+    box-sizing: border-box;
+}
+
+.feedback-box:focus {
+    outline: none;
+}
+
+
+/* =========================================
+   SUBMIT RATING BUTTON
+========================================= */
+
+.submit-rating-button {
+
+    background-color: var(--bg-card);
+
+    color: var(--text-primary);
+
+    border: none;
+
+    border-radius: 15px;
+
+    padding: 14px 28px;
+
+    font-size: 1.2rem;
+
+    font-family: var(--font-family);
+
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    transition: opacity 0.2s ease;
+}
+
+.submit-rating-button:hover {
+    opacity: 0.8;
+}
+
+.submit-rating-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+/* =========================================
+   RATING MESSAGE
+========================================= */
+
+.rating-message {
+
+    color: var(--text-primary);
+
+    font-size: 1rem;
+
+    font-family: var(--font-family);
+
+    text-align: center;
+
+    text-transform: uppercase;
+}

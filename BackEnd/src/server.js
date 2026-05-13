@@ -7,10 +7,11 @@ import { createUserTable } from "./models/user.model.js";
 import { createOrdersTable } from "./models/order.models.js";
 import { createProductTables, seedProducts } from "./models/product.model.js";
 import { createBatchTable } from "./models/batch.models.js";
+import { createRatingTable } from "./models/rating.model.js";
 import userRouter from "./routes/user.routes.js";
 import orderRouter from "./routes/orders.routes.js";
 import Batchrouter from "./routes/batch.routes.js";
-import { createRatingTable } from "./models/rating.model.js";
+import rateRouter from "./routes/rating.routes.js";
 
 
 const app = express();
@@ -76,3 +77,4 @@ await createRatingTable()
 app.use("/user" , userRouter);
 app.use("/order" , orderRouter);
 app.use("/batches", Batchrouter);
+app.use("/rate" , rateRouter);
