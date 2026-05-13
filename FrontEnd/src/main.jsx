@@ -11,8 +11,10 @@ import Layout from './layout.jsx'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute.jsx'
 import HomePage from './pages/HomePage/HomePage.jsx'
 import DelivererHomePage from './pages/DelivererHomePage/DelivererHomePage.jsx'
-import NPCListPage from './pages/NPCListPage/NPCListPage.jsx'
-import NPCDetailPage from './pages/NPCDetailPage/NPCDetailPage.jsx'
+// import NPCListPage from './pages/NPCListPage/NPCListPage.jsx'
+// import NPCDetailPage from './pages/NPCDetailPage/NPCDetailPage.jsx'
+import MyOrderPage from './pages/MyOrderPage/MyOrderPage.jsx'
+import MyDeliveryPage from './pages/MyDeliveryPage/MyDeliveryPage.jsx'
 import ShopSelectPage from './pages/ShopSelectPage/ShopSelectPage.jsx'
 import NewOrderPage from './pages/NewOrderPage/NewOrderPage.jsx'
 import OrderStatusPage from './pages/OrderStatusPage/OrderStatusPage.jsx'
@@ -54,12 +56,20 @@ const router = createBrowserRouter([
         element: <ProtectedRoute><DelivererHomePage/></ProtectedRoute>
       },
       {
-        path: "/browse/npcs", //never used in the project
-        element: <ProtectedRoute><NPCListPage/></ProtectedRoute>
+        path:"/myOpenOrders",
+        element: <ProtectedRoute><MyOrderPage/></ProtectedRoute>
       },
       {
-        path: "/browse/npcs/:id", //never used in the project
-        element: <ProtectedRoute><NPCDetailPage/></ProtectedRoute>
+        path:"/myOpenDeliveries",
+        element: <ProtectedRoute><MyDeliveryPage/></ProtectedRoute>
+      },
+      {
+        // path: "/browse/npcs", //never used in the project
+        // element: <ProtectedRoute><NPCListPage/></ProtectedRoute>
+      },
+      {
+        // path: "/browse/npcs/:id", //never used in the project
+        // element: <ProtectedRoute><NPCDetailPage/></ProtectedRoute>
       },
       {
         path: "/order/new/shop", //have to integrate this route 

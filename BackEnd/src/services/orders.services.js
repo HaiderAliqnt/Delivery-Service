@@ -1,4 +1,4 @@
-import { updateOrderStatus,assignDeliverer, createOrder, getOpenOrders, getOrderById, getOrderStatus ,getDelivererInfo} from "../models/order.models.js"
+import { getMyOpenOrders,updateOrderStatus,assignDeliverer, createOrder, getOpenOrders, getOrderById, getOrderStatus ,getDelivererInfo, getMyOpenDeliveries} from "../models/order.models.js"
 
 export const createOrderService = async(order_data) =>{
 
@@ -141,6 +141,54 @@ export const getDelivererInfoService = async (order_id) => {
 
     return result;
 };
+
+export const getMyOpenOrdersService = async (user_id) => {
+
+    try {
+
+        const orders = await getMyOpenOrders(user_id);
+
+        return {
+            success: true,
+            orders: orders.rows
+        };
+
+    } catch (err) {
+
+        console.error(
+            "Get open orders service error:",
+            err
+        );
+
+        throw err;
+    }
+};
+
+export const getMyOpenDeliveriesService = async(user_id)=>{
+    
+    try {
+
+        const orders = await getMyOpenDeliveries(user_id);
+
+        return {
+            success: true,
+            orders: orders.rows
+        };
+
+    } catch (err) {
+
+        console.error(
+            "Get open orders service error:",
+            err
+        );
+
+        throw err;
+    }
+}
+
+
+
+
 
 //FOR THE DELIVERER
 export const getOpenOrdersService = async(location) =>{

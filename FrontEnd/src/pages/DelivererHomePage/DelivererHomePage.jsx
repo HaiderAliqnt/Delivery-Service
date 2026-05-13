@@ -60,6 +60,18 @@ function DelivererHomePage() {
         </div>
 
         <div className="home-divider" />
+        <div className="mode-toggle-container">
+          <button
+            className='mode-toggle-button'
+            onClick={()=>{
+              navigate("/myOpenDeliveries")
+            }}
+          >
+            DELIVERIES
+          </button>
+      </div>
+
+
 
         <div className="mode-toggle-container">
           <p className="mode-toggle-title">I WANT TO</p>

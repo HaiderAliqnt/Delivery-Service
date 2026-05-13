@@ -14,6 +14,17 @@ export async function getFeed(location) {
   return res.json();
 }
 
+export async function getAvailableBatches() {
+
+  const res = await fetch(
+    `${FETCH_URL}/batches/available`
+  );
+
+  return res.json();
+}
+
+
+
 export async function claimOrder(orderId, deliverer_id) {
   const res = await fetch(`${FETCH_URL}/order/${orderId}/assign-deliverer`, {
     method: "POST",

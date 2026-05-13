@@ -48,5 +48,21 @@ export async function updateOrderStatus(orderId, status) {
   return result;
 }
 
+export async function getMyOpenOrders(user_id){
+  const response = await fetch (`${FETCH_URL}/order/open/${user_id}`,{
+    method : "GET",
+    headers: {"Content-Type" : "application/json" },
+  })
+  const result = await response.json()
+  return result
+}
 
+export async function getMyOpenDeliveries(user_id){
+  const response = await fetch (`${FETCH_URL}/order/open/deliveries/${user_id}`,{
+    method : "GET",
+    headers: {"Content-Type" : "application/json" },
+  })
+  const result = await response.json()
+  return result
+}
 

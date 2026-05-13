@@ -136,8 +136,28 @@ export const getDelivererInfo = async (order_id) => {
     return result.rows[0];
 };
 
+export const getMyOpenOrders = async(user_id) => {
+    const result = await pool.query(`
+        SELECT o.*
+        FROM orders o
+        WHERE customer_id = $1
+        AND status <> 'delivered';
+    ` ,[user_id])
+
+    return result;
+}
 
 
+export const getMyOpenDeliveries = async(user_id) =>{
+    const result = await pool.query(`
+        SELECT o.*
+        FROM orders o
+        WHERE deliverer_id = $1
+        AND status <> 'delivered';
+    ` ,[user_id])
+
+    return result;
+}
 
 
 

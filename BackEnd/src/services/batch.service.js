@@ -1,16 +1,24 @@
-// services/batchService.js
-
 import { pool } from "../DB/index.js"
 import deliveryGroups from "../config/deliveryGroups.js";
 
 
-// ======================================================
+
 // HELPERS
-// ======================================================
+
 
 const findGroupForBuilding = (building) => {
+
+    const normalized = building
+        ?.trim()
+        .toUpperCase();
+
     for (const [groupName, groupData] of Object.entries(deliveryGroups)) {
-        if (groupData.buildings.includes(building)) {
+
+        const buildings = groupData.buildings.map(
+            b => b.toUpperCase()
+        );
+
+        if (buildings.includes(normalized)) {
             return groupName;
         }
     }
@@ -18,21 +26,25 @@ const findGroupForBuilding = (building) => {
     return null;
 };
 
+
 const sortOrdersByRoute = (groupName, orders) => {
-    const routeOrder = deliveryGroups[groupName].routeOrder;
+
+    const routeOrder =
+        deliveryGroups[groupName].routeOrder;
 
     return orders.sort((a, b) => {
+
         return (
-            routeOrder.indexOf(a.delivery_building) -
-            routeOrder.indexOf(b.delivery_building)
+            routeOrder.indexOf(a.delivery_hostel) -
+            routeOrder.indexOf(b.delivery_hostel)
         );
     });
 };
 
 
-// ======================================================
+
 // CREATE BATCHES
-// ======================================================
+
 
 export const createBatches = async () => {
     try {
@@ -42,7 +54,7 @@ export const createBatches = async () => {
             SELECT *
             FROM orders
             WHERE batch_id IS NULL
-            AND status = 'pending'
+            AND status = 'open'
         `);
 
         const groupedOrders = {};
@@ -51,7 +63,7 @@ export const createBatches = async () => {
         for (const order of pendingOrders.rows) {
 
             const groupName = findGroupForBuilding(
-                order.delivery_building
+                order.delivery_hostel
             );
 
             if (!groupName) continue;
@@ -65,17 +77,17 @@ export const createBatches = async () => {
 
 
         // 3. CREATE BATCH FOR EACH GROUP
-        for (const [groupName, orders] of Object.entries(groupedOrders)) {
+    for (const [groupName, orders] of Object.entries(groupedOrders)) {
 
-            if (orders.length === 0) continue;
+        if (orders.length < 2) continue;
 
-            // SORT ORDERS
-            const sortedOrders = sortOrdersByRoute(
-                groupName,
-                orders
-            );
+        // SORT ORDERS
+        const sortedOrders = sortOrdersByRoute(
+            groupName,
+            orders
+        );
 
-            // CALCULATE TOTAL PRICE
+        // CALCULATE TOTAL PRICE
             const totalPrice = sortedOrders.reduce(
                 (sum, order) => sum + Number(order.total_price),
                 0
@@ -121,10 +133,10 @@ export const createBatches = async () => {
             }
         }
 
-        return {
-            success: true,
-            message: "Batches created successfully"
-        };
+            return {
+                success: true,
+                message: "Batches created successfully"
+    };
 
     } catch (err) {
 
@@ -135,9 +147,9 @@ export const createBatches = async () => {
 };
 
 
-// ======================================================
+
 // GET AVAILABLE BATCHES
-// ======================================================
+
 
 export const getAvailableBatches = async () => {
 
@@ -161,9 +173,9 @@ export const getAvailableBatches = async () => {
 };
 
 
-// ======================================================
+
 // GET SINGLE BATCH DETAILS
-// ======================================================
+
 
 export const getBatchDetails = async (batchId) => {
 
@@ -196,9 +208,9 @@ export const getBatchDetails = async (batchId) => {
 };
 
 
-// ======================================================
+
 // ACCEPT BATCH
-// ======================================================
+
 
 export const acceptBatch = async (
     batchId,
@@ -231,9 +243,8 @@ export const acceptBatch = async (
 };
 
 
-// ======================================================
 // START BATCH
-// ======================================================
+
 
 export const startBatch = async (batchId) => {
 
@@ -260,9 +271,8 @@ export const startBatch = async (batchId) => {
 };
 
 
-// ======================================================
+
 // COMPLETE ORDER
-// ======================================================
 
 export const completeOrderInBatch = async (
     orderId

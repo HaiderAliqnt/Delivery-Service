@@ -22,7 +22,7 @@ function HomePage() {
 
   return (
     <div className="page-container">
-      {/* We won't strictly need a back button on the root home page, but included for structure if needed */}
+     
       <NavBar title="" />
       
       <div className="home-content">
@@ -41,8 +41,19 @@ function HomePage() {
             />
           ))}
         </div>
+        
+      <div className="home-divider" />
 
-        <div className="home-divider" />
+      <div className="mode-toggle-container">
+          <button
+            className='mode-toggle-button'
+            onClick={()=>{
+              navigate("/myOpenOrders")
+            }}
+          >
+            YOUR ORDERS
+          </button>
+      </div>
 
         <div className="mode-toggle-container">
           <p className="mode-toggle-title">I WANT TO</p>

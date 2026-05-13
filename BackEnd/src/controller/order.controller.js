@@ -1,11 +1,15 @@
-import { assignDelivererService, cancelOrderService, createOrderService , getDelivererInfoService, getOpenOrdersService, getOrderStatusService, updateOrderStatusService } from "../services/orders.services.js";
-
+import { getMyOpenOrdersService, assignDelivererService, cancelOrderService, createOrderService , getDelivererInfoService, getOpenOrdersService, getOrderStatusService, updateOrderStatusService,getMyOpenDeliveriesService } from "../services/orders.services.js";
+import { createBatches } from "../services/batch.service.js";
+import { parseOrderText } from '../services/orderParser.service.js';
+import { getAllProductsWithAliases } from '../models/product.model.js';
 
 export const createOrderController = async (req, res) => {
     try {
         console.log("Order data received by controller:", req.body);
 
         const order = await createOrderService(req.body);
+
+        await createBatches();
 
         res.status(201).json({
             success: true,
@@ -138,6 +142,53 @@ export const getDelivererInfoController = async (req, res) => {
     }
 };
 
+export const getMyOpenOrdersController = async (req,res) => {
+
+    try {
+
+       
+        const { user_id } = req.params;
+        
+        const result = await getMyOpenOrdersService(user_id);
+
+        return res.status(200).json(result);
+
+    } catch (err) {
+
+        console.error(
+            "Get open orders controller error:",
+            err
+        );
+
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch open orders"
+        });
+    }
+};
+
+export const getMyOpenDeliveriesController = async(req,res) => {
+    try {
+
+       const { user_id } = req.params;
+        
+        const result = await getMyOpenDeliveriesService(user_id);
+
+        return res.status(200).json(result);
+
+    } catch (err) {
+
+        console.error(
+            "Get open orders controller error:",
+            err
+        );
+
+        return res.status(500).json({
+            success: false,
+            message: "Failed to fetch open orders"
+        });
+    }
+}
 
 
 
@@ -162,8 +213,7 @@ export const getOrdersController = async (req , res) => {
 
 }
 
-import { parseOrderText } from '../services/orderParser.service.js';
-import { getAllProductsWithAliases } from '../models/product.model.js';
+
 
 export const estimateOrder = async (req, res) => {
     try {
