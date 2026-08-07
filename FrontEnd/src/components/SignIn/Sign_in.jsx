@@ -15,8 +15,8 @@ function SignIN_page() {
         try {
             const response = await fetch(`${FETCH_URL}/user/login`, {
                 method: "POST",
-                headers: { 
-                    "Content-Type": "application/json" 
+                headers: {
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify({
                     phone_number: phone,
@@ -57,14 +57,15 @@ function SignIN_page() {
                 <div id="signin-enter-button-section">
                     <button id="signin-enter-button" onClick={SignIN_func}>ENTER</button>
                 </div>
-                <div id="create-account-section">
-                    <h4 id="first-time">FIRST TIME?</h4>
-                    <Link to="/signup" className="signup-link">
-                        <button id="create-account-button">SIGNUP</button>
-                    </Link>
-                </div>
-            </div>
-        </div> 
+
+        </div>
+        <div id="create-account-section">
+            <h4 id="first-time">FIRST TIME ?</h4>
+            <Link to="/signup" className="signup-link">
+                <button id="create-account-button">SIGNUP</button>
+            </Link>
+        </div>
+        </div>
     </>
   )
 }

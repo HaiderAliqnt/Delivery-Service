@@ -4,14 +4,15 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; 
+    justify-content: space-between;
     overflow: hidden;
+    background-color: #741B1B;
 }
 
 #signin-title{
     width: 100%;
     text-align: center;
-    margin-bottom: 24px;
+    margin-top: 100px;
 }
 
 #signin-title h1 {
@@ -23,6 +24,7 @@
 
 #Signin-box{
     width: 100%;
+    height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,15 +39,15 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
 .user_details{
     height: 60px;
     width: 100%;
-    margin-bottom: 16px;
-    background-color: #222;
-    border: 2px solid #333;
+    margin-top: 30px;
+    background-color:#151515;
+    border: 2px solid #151515 ;
     border-radius: 12px;
     padding: 0 16px;
     font-family: "Jersey 25", monospace;
@@ -55,7 +57,7 @@
 }
 
 .user_details::placeholder {
-    color: var(--text-muted, #a08080);
+    color: var(--text-primary,white);
 }
 
 #signin-enter-button-section{
@@ -67,8 +69,8 @@
 }
 
 #signin-enter-button{
-    height: 60px;
-    width: 100%;
+    height: 50px;
+    width: 60%;
     background-color: var(--accent);
     color: white;
     border: none;
@@ -77,26 +79,30 @@
     font-size: 2rem;
     cursor: pointer;
     text-transform: uppercase;
+    background-color: #151515;
 }
 
 #create-account-section{
-    width: 100%;
+    width: 70%;
+    height: 30%;
     display: flex;
     flex-direction: column;
-    background-color: #222;
-    border: 2px solid #333;
+    background-color: #151515;
+    border: 2px solid #151515;
     padding: 16px;
     align-items: center;
-    border-radius: 12px;
+    justify-content: center;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     box-sizing: border-box;
 }
 
 #first-time{
     font-family: "Jersey 25", monospace;
-    font-size: 2rem;
+    font-size: 2.5rem;
     text-align: center;
     color: white;
-    margin: 0 0 12px 0;
+    margin: 0 0 30px 0;
 }
 
 #create-account-button{
@@ -114,6 +120,6 @@
 
 .signup-link {
     text-decoration: none;
-    color: inherit; 
+    color: inherit;
     display: block;
 }
