@@ -1,9 +1,7 @@
 #  GIKGo — Smart Campus Delivery & Micro-Logistics Network
 
 
-<img width="1101" height="771" alt="image" src="https://github.com/user-attachments/assets/66a1a8ca-4fec-4991-b3a7-26143a17b391" />
-
-
+<img width="330" height="659" alt="image" src="https://github.com/user-attachments/assets/f639352a-1c25-4141-94c0-279d517e4822" />
 
 GIKGo is a peer-to-peer, campus-focused delivery and logistics platform designed specifically for environments like GIKI. It enables students to request items from nearby stores and have them delivered by other students within campus.
 
