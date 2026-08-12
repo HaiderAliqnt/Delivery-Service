@@ -1,7 +1,6 @@
 #  GIKGo — Smart Campus Delivery & Micro-Logistics Network
 
-
-<img width="878" height="525" alt="image" src="https://github.com/user-attachments/assets/e5d741c4-9d49-4c75-95e3-46ec406c2245" />
+<img width="441" height="917" alt="image" src="https://github.com/user-attachments/assets/64f0420f-dc83-4eb3-9ba4-88ab4d246a24" />
 
 
 
